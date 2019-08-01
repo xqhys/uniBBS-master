@@ -1,0 +1,8 @@
+
+.bghead {
+	width: 100%;
+	background-color: #3CC48D;
+	margin-top: -5rpx;
+	border-radius: 0rpx 0rpx 150rpx 150rpx;
+}
+

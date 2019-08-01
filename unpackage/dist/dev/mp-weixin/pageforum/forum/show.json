@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "帖子详情",
+  "onReachBottomDistance": 60,
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "d-userbox": "/components/d-userbox",
+    "cmform": "/components/cmform"
+  }
+}
