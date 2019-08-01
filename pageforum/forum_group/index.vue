@@ -1,97 +1,281 @@
 <template>
-	<view v-if="pageLoad">
-	<view class="flexlist">
-		<view class="flexlist-item bg-fff" v-for="(item,key) in pageData.list" :key="key">
-			<navigator class="flexlist-imgbox" :url="'../forum/list?gid='+item.gid">
-				<img class="flexlist-img" :src="item.imgurl+'.100x100.jpg'">
-			</navigator>
-			<view class="flex-1">
-				<navigator class="flexlist-title" :url="'../forum/list?gid='+item.gid">{{item.title}}</navigator>
-				<view class="flexlist-row">
-					主题数
-					<text class="cl-num mgl-5 mgr-10">{{item.topic_num}}</text> 
-					 
-					评论数
-					<text class="cl-num  mgl-5">{{item.comment_num}}</text>
+	<view style="flex: 1;flex-direction: column;overflow: hidden;">
+		<view style="min-height: 380upx;">
+			<view class="bghead" :style="{'height': systems.windowHeight * 0.25 + 'px'}">
+				<swiper class="screen-swiper swiper-image square-dot" :indicator-dots="true" :circular="true" :autoplay="true"
+				 interval="5000" duration="500">
+					<swiper-item v-for="(item,index) in swiperList" :key="index">
+						<image :src="item.url" mode="aspectFill" v-if="item.type=='image'" style="align-items: center;"></image>
+						<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
+					</swiper-item>
+				</swiper>
+			</view>
+		</view>
+
+		<view class="tabs-border">
+			<!-- <view  @click="setCat(0)" class="tabs-border-item" v-bind:class="defaultActive">推荐</view> -->
+			<!-- <view @click="setCat(item.catid)" v-bind:class="{ 'tabs-border-active':item.isactive }" v-for="(item,key) in pageData.catlist" :key="key" class="tabs-border-item">{{item.title}}</view> -->
+			<scroll-view scroll-x class="bg-white nav" scroll-with-animation :scroll-left="scrollLeft">
+				<view class="cu-item" :class="index==TabCur?'text-green cur':''" v-for="(item,index) in pageData.catlist" :key="index"
+				 @tap="tabSelect" :data-id="index">
+					{{item.title}}
 				</view>
-				<view class="flexlist-desc">{{item.description}}</view>
+			</scroll-view>
+		</view>
+		<view class="flist">
+			<view @click="goForum(item.id)" class="flist-item" v-for="(item,fkey) in pageData.list" :key="fkey">
+				<view class="flist-user">
+					<image :src="item.user_head+'.100x100.jpg'" class="flist-head"></image>
+					<view class="flex-1">
+						<view class="flist-nick">{{item.nickname}}</view>
+						<view class="flist-time">{{item.timeago}}</view>
+					</view>
+				</view>
+				<view class="flist-title">{{item.title}}</view>
+
+				<view class="flist-vd" v-if="item.videourl">
+					<image class="flist-vd-bg" :src="item.videoimg"></image>
+					<div class="flist-vd-play"></div>
+				</view>
+
+
+
+				<view class="flist-imgs" v-if="item.imgslist">
+					<image v-for="(img,imgIndex) in item.imgslist" :key="imgIndex" :src="img+'.100x100.jpg'" class="flist-imgs-img"
+					 mode="widthFix"></image>
+				</view>
+
+				<view class="flex flist-ft">
+					<view class="flist-ft-love">
+						{{item.love_num}} </view>
+					<view class="flist-ft-cm">
+						{{item.comment_num}} </view>
+					<view class="flist-ft-view">
+						{{item.view_num}} </view>
+				</view>
 			</view>
 
 		</view>
-		
-	</view>
-	
-	<mt-footer tab="group"></mt-footer>
+		<forum-footer tab="search"></forum-footer>
 	</view>
 </template>
- 
 
 <script>
+	import forumFooter from "../../components/forumfooter.vue";
 	var app = require("../../common/common.js");
-	import mtFooter from "../../components/forumfooter.vue";
+	var per_page = 0;
+	var isfirst = true;
+	var catid = 0;
+	var gid = 0;
+	var activeClass = "tabs-border-active";
 	export default {
 		components: {
-			mtFooter
+			forumFooter
 		},
-		data:function(){
+		data: function() {
 			return {
-				pageLoad:false, 
-				pageHide:false,
-				pageData:{},
+				pageLoad: false,
+				pageHide: false,
+				pageData: {},
+				systems: uni.getSystemInfoSync(),
+				defaultActive: activeClass,
+				TabCur: 0,
+				scrollLeft: 0,
+				tabsBorder: 0,
+				swiperList: [{
+					id: 0,
+					type: 'image',
+					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
+				}, {
+					id: 1,
+					type: 'image',
+					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg',
+				}, {
+					id: 2,
+					type: 'image',
+					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
+				}, {
+					id: 3,
+					type: 'image',
+					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
+				}, {
+					id: 4,
+					type: 'image',
+					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
+				}, {
+					id: 5,
+					type: 'image',
+					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
+				}, {
+					id: 6,
+					type: 'image',
+					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
+				}]
 			}
+
+		},
+		onReady: function() {
 			
 		},
-
-		onLoad: function (option) {
-			uni.showNavigationBarLoading();
+		onLoad: function(option) {
+			gid = option.gid;
+			catid = option.catid;
+			uni.setNavigationBarTitle({
+				title: '帖子'
+			});
+			
+			
+			
 			this.getPage();
 		},
-		onReady: function () {
-			uni.setNavigationBarTitle({
-				title: "论坛板块",
-			});
-		},
-		onShow: function () {
+
+		onShow: function() {
 			if (this.pageHide) {
 				this.pageHide = false;
 				this.getPage();
 			}
 		},
-		onHide: function () {
+		onHide: function() {
 			this.pageHide = true;
 		},
-		onPullDownRefresh:function(){
+		onReachBottom: function() {
+			this.getList();
+		},
+		onPullDownRefresh: function() {
 			this.refresh();
-		} ,
-		 
+		},
+		computed: {
+			// 计算属性的 getter
+			reversedMessage: function () {
+				let self = this;
+				let view = uni.createSelectorQuery().in(this).select(".tabs-border");
+				if (self.tabsBorder != 0) {
+					view.boundingClientRect(data => {
+						self.tabsBorder = data.top;
+					}).exec();
+				}else{
+					self.tabsBorder = 1;
+				}
+				
+			  return self.tabsBorder
+			}
+		},
+		watch: {
+			reversedMessage: {
+				handler: function(newVal, oldVal) {
+				},
+				deep: true
+			}
+		},
 		methods: {
-			getPage: function () {
+			getPage: function() {
 				var that = this;
 				uni.request({
-					url: app.apiHost + "/module.php?m=forum_group&ajax=1&fromapp=" + app.fromapp(),
-					success: function (data) {
-						that.pageLoad = true;
-						that.pageData = data.data.data;
-						uni.hideNavigationBarLoading();
+					url: app.apiHost + "/module.php?m=forum&a=list&ajax=1",
+					data: {
+						gid: gid,
+						catid: catid,
+						authcode: app.getAuthCode()
+					},
+					success: function(res) {
+						//登录
+						if (res.data.error == 1000) {
+							uni.navigateTo({
+								url: "/pages/login/index",
+							})
+						} else {
+							isfirst = false;
+							that.pageLoad = true;
+							that.pageData = res.data.data;
+							per_page = res.data.data.per_page;
+							uni.setNavigationBarTitle({
+								title: that.pageData.group.title
+							});
+						}
+
 					}
 				})
 			},
-			refresh:function(){
-				this.getPage();
-				setTimeout(function(){
-					uni.stopPullDownRefresh();
-				},1000)
+			setCat: function(cid) {
+				catid = cid;
+				isfirst = true;
+				per_page = 0;
+				if (catid == 0) {
+					this.defaultActive = activeClass;
+				} else {
+					this.defaultActive = "";
+				}
+				var catlist = this.pageData.catlist;
+				for (var i in catlist) {
+					if (catlist[i].catid == catid) {
+						catlist[i].isactive = 1;
+					} else {
+						catlist[i].isactive = 0;
+					}
+				}
+				this.pageData.catlist = catlist;
+				this.getList();
 			},
-			goList: function (id) {
-				uni.navigateTo({
-					url: "../forum/list?gid=" + id
+			getList: function() {
+				var that = this;
+				if (!isfirst && per_page == 0) return false;
+				uni.request({
+					url: app.apiHost + "/module.php?m=forum&a=list&ajax=1",
+					data: {
+						per_page: per_page,
+						catid: catid,
+						gid: gid,
+						authcode: app.getAuthCode()
+					},
+					success: function(res) {
+
+						if (!res.data.error) {
+							if (isfirst) {
+								that.pageData.list = res.data.data.list;
+								isfirst = false;
+							} else {
+
+								that.pageData.list = app.json_add(that.pageData.list, res.data.data.list);
+							}
+							per_page = res.data.data.per_page;
+
+						}
+
+
+					}
 				})
-			},	
-			goForum: function (id) {
+			},
+			goForum: function(id) {
 				uni.navigateTo({
 					url: "../forum/show?id=" + id
 				})
+			},
+			refresh: function() {
+				this.getPage();
+				setTimeout(function() {
+					uni.stopPullDownRefresh();
+				}, 1000)
+			},
+			loadMore: function() {
+				this.getList();
+			},
+			tabSelect(e) {
+				this.TabCur = e.currentTarget.dataset.id;
+				this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60;
+				console.log(this.TabCur)
+			},
+			scrolltoupper() {
+				console.log(22222222222222222222)
 			}
 		},
 	}
 </script>
+
+<style>
+	.bghead {
+		width: 100%;
+		background-color: #3CC48D;
+		margin-top: -5px;
+		border-radius: 0px 0px 150px 150px;
+	}
+</style>

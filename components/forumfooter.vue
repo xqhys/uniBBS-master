@@ -36,7 +36,7 @@
 			 
 			goFenlei:function(){
 				uni.reLaunch({
-					url:"../../pageforum/forum_group/index"
+					url:"../../pageforum/forum_group/index?gid=1"
 				})
 			},
 			 
