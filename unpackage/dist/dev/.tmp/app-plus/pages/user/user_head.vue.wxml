@@ -1,1 +1,0 @@
-<template name="61e545e6"><view class="_view M61e545e6"><view wx:if="{{pageLoad}}" class="_view M61e545e6"><view class="_view M61e545e6 flex flex-center mgt-10 mgb-10"><image bindtap="handleProxy" mode="widthFix" class="_image M61e545e6 wh-200 pointer" src="{{user_head}}" data-eventid="{{'61e545e6-0'}}" data-comkey="{{$k}}"></image></view></view></view></template>

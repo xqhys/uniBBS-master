@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"fixBt{ position: fixed; width: ",[0,120],"; height: ",[0,120],"; text-align: center; line-height: ",[0,120],"; border-radius: 50%; background-color: #007AFF; color: #fff; right: ",[0,5],"; bottom: ",[0,10],"; }\n",],undefined,{path:"./pages/user_address/my.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/user_address/my.wxml') } }));

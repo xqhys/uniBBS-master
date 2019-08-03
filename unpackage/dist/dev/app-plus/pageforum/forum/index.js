@@ -1,2 +1,0 @@
-setCssToHead(["wx-swiper{ height: ",[0,440],"; }\n",],undefined,{path:"./pageforum/forum/index.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pageforum/forum/index.wxml') } }));

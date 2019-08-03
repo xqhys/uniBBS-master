@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "校园云生活",
-  "onReachBottomDistance": 60,
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "forum-footer": "/components/forumfooter"
-  }
-}

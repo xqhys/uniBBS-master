@@ -1,1 +1,0 @@
-<template name="31a20032"><view class="_view M31a20032"><view wx:if="{{pageLoad}}" class="_view M31a20032"><view class="_view M31a20032 d-title">{{pageData.data.title}}</view><view class="_view M31a20032 d-content"><rich-text type="text" nodes="{{pageData.data.content}}" class="_rich-text M31a20032"></rich-text></view></view></view></template>

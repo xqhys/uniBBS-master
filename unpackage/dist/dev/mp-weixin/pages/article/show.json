@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "sky-share": "/components/skyshare",
-    "cmform": "/components/cmform"
-  }
-}
