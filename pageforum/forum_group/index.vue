@@ -1,5 +1,5 @@
 <template>
-	<view style="flex: 1;flex-direction: column;overflow: hidden;">
+	<view>
 		<view style="min-height: 380upx;">
 			<view class="bghead" :style="{'height': systems.windowHeight * 0.25 + 'px'}">
 				<swiper class="screen-swiper swiper-image square-dot" :indicator-dots="true" :circular="true" :autoplay="true"
@@ -12,9 +12,7 @@
 			</view>
 		</view>
 
-		<view class="tabs-border">
-			<!-- <view  @click="setCat(0)" class="tabs-border-item" v-bind:class="defaultActive">推荐</view> -->
-			<!-- <view @click="setCat(item.catid)" v-bind:class="{ 'tabs-border-active':item.isactive }" v-for="(item,key) in pageData.catlist" :key="key" class="tabs-border-item">{{item.title}}</view> -->
+		<view class="tabs-border" :class="{'tabs-position':isPosition}">
 			<scroll-view scroll-x class="bg-white nav" scroll-with-animation :scroll-left="scrollLeft">
 				<view class="cu-item" :class="index==TabCur?'text-green cur':''" v-for="(item,index) in pageData.catlist" :key="index"
 				 @tap="tabSelect" :data-id="index">
@@ -22,41 +20,36 @@
 				</view>
 			</scroll-view>
 		</view>
-		<view class="flist">
-			<view @click="goForum(item.id)" class="flist-item" v-for="(item,fkey) in pageData.list" :key="fkey">
-				<view class="flist-user">
-					<image :src="item.user_head+'.100x100.jpg'" class="flist-head"></image>
-					<view class="flex-1">
-						<view class="flist-nick">{{item.nickname}}</view>
-						<view class="flist-time">{{item.timeago}}</view>
+
+		<view v-for="(item,fkey) in pageData.list" :key="fkey" class="cu-card dynamic" :class="isCard?'no-card':''">
+			<view class="cu-item shadow">
+				<view class="cu-list menu-avatar">
+					<view class="cu-item">
+						<view class="cu-avatar round lg" :style="[{'background-image':'url(' + item.user_head + '.100x100.jpg)'}]"></view>
+						<view class="content flex-sub">
+							<view>{{item.nickname}}</view>
+							<view class="text-gray text-sm flex justify-between">
+								{{item.timeago}}
+							</view>
+						</view>
 					</view>
 				</view>
-				<view class="flist-title">{{item.title}}</view>
-
-				<view class="flist-vd" v-if="item.videourl">
-					<image class="flist-vd-bg" :src="item.videoimg"></image>
-					<div class="flist-vd-play"></div>
+				<view class="text-content" @click="goForum(item.id)">
+					{{item.title}}
 				</view>
-
-
-
-				<view class="flist-imgs" v-if="item.imgslist">
-					<image v-for="(img,imgIndex) in item.imgslist" :key="imgIndex" :src="img+'.100x100.jpg'" class="flist-imgs-img"
-					 mode="widthFix"></image>
+				<view class="grid flex-sub padding-lr" :class="item.imgslist && item.imgslist.length>1?'col-3 grid-square':'col-1'">
+					<view class="bg-img" :class="item.imgslist && item.imgslist.length>1?'':'only-img'" :style="[{'background-image':'url(' + img + '.100x100.jpg)'}]"
+					 v-for="(img,imgIndex) in item.imgslist" :key="imgIndex">
+					</view>
 				</view>
-
-				<view class="flex flist-ft">
-					<view class="flist-ft-love">
-						{{item.love_num}} </view>
-					<view class="flist-ft-cm">
-						{{item.comment_num}} </view>
-					<view class="flist-ft-view">
-						{{item.view_num}} </view>
+				
+				<view class="text-gray text-sm text-right padding">
+					<text class="cuIcon-appreciatefill margin-lr-xs"></text> 20 赞
+					<text class="cuIcon-attentionfill margin-lr-xs"></text> 10 阅读
 				</view>
 			</view>
-
 		</view>
-		<forum-footer tab="search"></forum-footer>
+		<forum-footer tab="group"></forum-footer>
 	</view>
 </template>
 
@@ -74,6 +67,8 @@
 		},
 		data: function() {
 			return {
+				isCard: true,
+				isPosition: false,
 				pageLoad: false,
 				pageHide: false,
 				pageData: {},
@@ -167,7 +162,18 @@
 				deep: true
 			}
 		},
+		onPageScroll: function(e) {  
+		  let top = e.scrollTop;
+		  if (top > 185) {
+		  	this.isPosition = true;
+		  } else {
+		  	this.isPosition = false;
+		  }
+		},
 		methods: {
+			IsCard(e) {
+				this.isCard = e.detail.value
+			},
 			getPage: function() {
 				var that = this;
 				uni.request({

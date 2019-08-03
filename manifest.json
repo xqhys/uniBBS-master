@@ -48,6 +48,9 @@
     "mp-weixin" : {
         /* 小程序特有相关 */
         "appid" : "wx5ba8d1a42db7c474",
-        "usingComponents" : true
+        "usingComponents" : true,
+        "setting" : {
+            "postcss" : true
+        }
     }
 }

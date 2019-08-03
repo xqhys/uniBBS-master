@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "mt-footer": "/components/forumfooter"
+    "forum-footer": "/components/forumfooter"
   }
 }

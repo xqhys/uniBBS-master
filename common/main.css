@@ -2179,6 +2179,7 @@ button.cuIcon.lg {
  ==================== */
 
 .cu-card {
+	margin-top: 10upx;
 	display: block;
 	overflow: hidden;
 }

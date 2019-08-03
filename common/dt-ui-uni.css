@@ -1,7 +1,7 @@
 page{
 	 
  }
- html,body{
+html,body{
 	 margin: 0;
 	 padding: 0;
 	 background-color: #efeff4;
@@ -19,11 +19,12 @@ a{
 .iconfont:before{
 	line-height: 1.5;
 }
-view,div{
+
+/* view,div{
 	color: #323232;
 	box-sizing: border-box;
 	font-size: 33.6upx;
-}
+} 
 
 view,div{
 	display: flex;
@@ -34,11 +35,11 @@ view,div{
 	font-size: 33.6upx;
 }
 
- 
 text{
 	display: inline-block;
 	line-height: 1.5;
-}
+} */ 
+
 navigator{
 	display: flex;
 	color: #323232;
@@ -46,10 +47,10 @@ navigator{
 	flex-direction: column;
 	box-sizing: border-box;
 }
-image{
+/* image{
 	display: flex;
-}
- /*****详情******/
+} */
+ /*****详情*****
 .d-userbox{
 	display: flex;
 	flex-direction: row;
@@ -1689,9 +1690,15 @@ image{
  	right: 0upx;
  	z-index: 100;
  } 
+ .tabs-position{
+ 	top: 0px;
+ 	z-index: 9999;
+ 	position: fixed !important;
+ }
 /****tabs-border***/
 .tabs-border{
 	display: flex;
+	width: 100%;
 	flex-direction: row;
 	border-bottom: 1px solid #eee;
 	line-height: 86.4upx;
@@ -1699,6 +1706,7 @@ image{
 	background-color: #fff;
  
 }
+
 .tabs-border-item{
 	flex: 1;
 	text-align: center;

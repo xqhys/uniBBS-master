@@ -56,6 +56,7 @@
 @import "./common/dt-ui-uni.css";
 @import "./common/forum.css";
 @import "common/main.css";
+@import "common/icon.css";
 uni-input div{
 	width: 100%;
 }
@@ -98,4 +99,5 @@ uni-page-head .uni-page-head-hd{
 	display: block;
 	font-size: 32upx;
 }
+
 </style>

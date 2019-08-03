@@ -102,11 +102,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/pageloading":1,"components/skyshare":1,"components/pickerregion":1,"components/pickergroup":1};
+/******/ 		var cssChunks = {"components/pageloading":1,"components/skyshare":1,"components/pickerregion":1,"components/chatinput":1,"components/pickergroup":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/pageloading":"components/pageloading","components/forumfooter":"components/forumfooter","components/footer":"components/footer","components/cmform":"components/cmform","components/skyshare":"components/skyshare","components/pickerregion":"components/pickerregion","components/d-userbox":"components/d-userbox","components/pickergroup":"components/pickergroup","components/upimgbox":"components/upimgbox"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/pageloading":"components/pageloading","components/forumfooter":"components/forumfooter","components/footer":"components/footer","components/cmform":"components/cmform","components/skyshare":"components/skyshare","components/pickerregion":"components/pickerregion","components/chatinput":"components/chatinput","components/d-userbox":"components/d-userbox","components/pickergroup":"components/pickergroup","components/upimgbox":"components/upimgbox"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

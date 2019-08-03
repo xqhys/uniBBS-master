@@ -103,7 +103,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var cmform = function cmform() {return __webpack_require__.e(/*! import() | components/cmform */ "components/cmform").then(__webpack_require__.bind(null, /*! ../../components/cmform.vue */ 265));};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var cmform = function cmform() {return __webpack_require__.e(/*! import() | components/cmform */ "components/cmform").then(__webpack_require__.bind(null, /*! ../../components/cmform.vue */ 269));};
 
 
 
@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var id;var skyShare = function skyShare() {return __webpack_require__.e(/*! import() | components/skyshare */ "components/skyshare").then(__webpack_require__.bind(null, /*! ../../components/skyshare.vue */ 270));};var _default =
+var id;var skyShare = function skyShare() {return __webpack_require__.e(/*! import() | components/skyshare */ "components/skyshare").then(__webpack_require__.bind(null, /*! ../../components/skyshare.vue */ 274));};var _default =
 
 
 {

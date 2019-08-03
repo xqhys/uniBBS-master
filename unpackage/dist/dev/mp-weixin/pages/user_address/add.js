@@ -103,7 +103,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var pickerRegion = function pickerRegion() {return Promise.all(/*! import() | components/pickerregion */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/pickerregion")]).then(__webpack_require__.bind(null, /*! ../../components/pickerregion.vue */ 277));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var pickerRegion = function pickerRegion() {return Promise.all(/*! import() | components/pickerregion */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/pickerregion")]).then(__webpack_require__.bind(null, /*! ../../components/pickerregion.vue */ 281));};var _default =
 
 
 
