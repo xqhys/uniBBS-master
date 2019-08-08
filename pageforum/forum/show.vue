@@ -57,8 +57,8 @@
 							<view class="margin-top-sm flex justify-between">
 								<view class="text-gray text-df">2018年12月4日</view>
 								<view>
-									<text class="cuIcon-appreciatefill text-red"></text>
-									<text @click="isShowInput" class="cuIcon-messagefill text-gray margin-left-sm"></text>
+									<text class="cuIcon-appreciatefill text-red"></text> 赞
+									<text @click="isShowInput" class="cuIcon-messagefill text-gray margin-left-sm"></text> 回复
 								</view>
 							</view>
 						</view>

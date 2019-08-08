@@ -1401,7 +1401,7 @@ button.cuIcon.lg {
 .cu-list.grid>.cu-item {
 	position: relative;
 	display: flex;
-	padding: 20upx 0 30upx;
+	padding: 20upx 0 20upx;
 	transition-duration: 0s;
 	flex-direction: column
 }
@@ -1459,7 +1459,7 @@ button.cuIcon.lg {
 }
 
 .cu-list.grid.no-border {
-	padding: 20upx 10upx
+	padding: 10upx 10upx
 }
 
 .cu-list.grid.col-3>.cu-item:nth-child(3n):after,

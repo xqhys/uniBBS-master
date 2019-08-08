@@ -30,7 +30,7 @@
 			},
 			goHome:function(){
 				uni.reLaunch({
-					url:"../../pages/index/index"
+					url:"../../pages/index/index?gid=1"
 				})
 			},
 			 

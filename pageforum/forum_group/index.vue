@@ -14,9 +14,9 @@
 
 		<view class="tabs-border" :class="{'tabs-position':isPosition}">
 			<scroll-view scroll-x class="bg-white nav" scroll-with-animation :scroll-left="scrollLeft">
-				<view class="cu-item" :class="index==TabCur?'text-green cur':''" v-for="(item,index) in pageData.catlist" :key="index"
+				<view class="cu-item" :class="index==TabCur?'text-green cur':''" v-for="(item,index) in tabs" :key="index"
 				 @tap="tabSelect" :data-id="index">
-					{{item.title}}
+					{{item.name}}
 				</view>
 			</scroll-view>
 		</view>
@@ -105,6 +105,46 @@
 					id: 6,
 					type: 'image',
 					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
+				}],
+				tabs: [{
+					cuIcon: '',
+					name: '全部'
+				},
+				{
+					cuIcon: '',
+					name: '校园'
+				},
+				{
+					cuIcon: '',
+					name: '问答'
+				},
+				{
+					cuIcon: '',
+					name: '生活'
+				},
+				{
+					cuIcon: '',
+					name: '情感'
+				},
+				{
+					cuIcon: '',
+					name: '旅游'
+				},
+				{
+					cuIcon: '',
+					name: '广告'
+				},
+				{
+					cuIcon: '',
+					name: '失物招领'
+				},
+				{
+					cuIcon: '',
+					name: '兼职/家教'
+				},
+				{
+					cuIcon: '',
+					name: '二手物品'
 				}]
 			}
 
@@ -116,10 +156,8 @@
 			gid = option.gid;
 			catid = option.catid;
 			uni.setNavigationBarTitle({
-				title: '帖子'
+				title: '微校园'
 			});
-			
-			
 			
 			this.getPage();
 		},
@@ -194,9 +232,9 @@
 							that.pageLoad = true;
 							that.pageData = res.data.data;
 							per_page = res.data.data.per_page;
-							uni.setNavigationBarTitle({
+							/* uni.setNavigationBarTitle({
 								title: that.pageData.group.title
-							});
+							}); */
 						}
 
 					}
