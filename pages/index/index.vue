@@ -1,18 +1,26 @@
 <template>
 	<view>
-		<view style="min-height: 380upx;">
-			<view class="bghead" :style="{'height': systems.windowHeight * 0.25 + 'px'}">
-				<swiper class="screen-swiper swiper-image square-dot" :indicator-dots="true" :circular="true" :autoplay="true"
-				 interval="5000" duration="500">
-					<swiper-item v-for="(item,index) in swiperList" :key="index">
-						<image :src="item.url" mode="aspectFill" v-if="item.type=='image'" style="align-items: center;"></image>
-						<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
-					</swiper-item>
-				</swiper>
+		<view class="bghead">
+			<view class="title-search">
+				<view class="view-title">
+					<text class="text-white">河南师范大学</text>
+					<uni-icon type="arrowdown" color="#fff" size="20"/>
+				</view>
+				<view class="view-search">
+					<uni-icon style="line-height: 20px;" type="search" size="22" color="#666666" />
+					<text class="text-gray">请输入搜索关键词</text>
+				</view>
 			</view>
+			
+			<swiper class="screen-swiper swiper-image square-dot radius-imags" :indicator-dots="true" :circular="true" :autoplay="true"
+			 interval="5000" duration="500">
+				<swiper-item v-for="(item,index) in swiperList" :key="index">
+					<image v-if="item.type=='image'" :src="item.url" mode="aspectFill" class="radius-imags"></image>
+				</swiper-item>
+			</swiper>
 		</view>
-
-		<swiper style="height: 90px;background-color: #FFFFFF;">
+		
+		<swiper class="swiper-tabs">
 			<swiper-item>
 				<scroll-view scroll-x>
 					<view class="cu-list grid no-border" :class="['col-' + gridCol]">
@@ -32,9 +40,11 @@
 					<view class="cu-item">
 						<view class="cu-avatar round lg" :style="[{'background-image':'url(' + item.user_head + '.100x100.jpg)'}]"></view>
 						<view class="content flex-sub">
-							<view>{{item.nickname}}</view>
-							<view class="text-gray text-sm flex justify-between">
-								{{item.timeago}}
+							<view class="text-blue">{{item.nickname}}</view>
+							<view class="uni-flex uni-row">
+								<view class="uni-bg-fea">
+									兼职家教
+								</view>
 							</view>
 						</view>
 					</view>
@@ -48,9 +58,15 @@
 					</view>
 				</view>
 				
-				<view class="text-gray text-sm text-right padding">
-					<text class="cuIcon-appreciatefill margin-lr-xs"></text> 20 赞
-					<text class="cuIcon-attentionfill margin-lr-xs"></text> 10 阅读
+				<view class="uni-flex cu-bar uni-row text-gray text-sm text-right padding">
+					<view class="text-grey">
+						<uni-icon type="location-filled" size="15" color="green" />
+						来自[河南师范大学]
+					</view>
+					<view>
+						<text class="cuIcon-appreciatefill margin-lr-xs"></text> 20 赞
+						<text class="cuIcon-attentionfill margin-lr-xs"></text> 10 阅读
+					</view>
 				</view>
 			</view>
 		</view>
@@ -59,7 +75,9 @@
 </template>
 
 <script>
+	import uniIcon from '@/components/uni-icon.vue'
 	import forumFooter from "../../components/forumfooter.vue";
+	
 	var app = require("../../common/common.js");
 	var per_page = 0;
 	var isfirst = true;
@@ -68,7 +86,8 @@
 	var activeClass = "tabs-border-active";
 	export default {
 		components: {
-			forumFooter
+			forumFooter,
+			uniIcon
 		},
 		data: function() {
 			return {
@@ -293,14 +312,42 @@
 <style>
 	.bghead {
 		width: 100%;
-		background-color: #3CC48D;
-		margin-top: -5px;
-		border-radius: 0px 0px 150px 150px;
+		height: 435px;
+		background-color: #56CC9C;
+		border-radius: 0px 0px 190px 190px;
+	}
+	
+	.title-search {
+		display: flex;
+		min-height: 85px;
+	}
+	
+	.view-title {
+		width: 60%;
+		height: 55px;
+		text-align: center;
+	}
+	
+	.view-search {
+		width: 93%;
+		height: 55px;
+		line-height: 55px;
+		padding: 0 4%;
+		margin-right: 25px;
+		border-radius: 30px;
+		background-color: #fff;
 	}
 	
 	.icon-tabs {
 		background-size: cover;
-		width: 100px;
-		height: 100px;
+		width: 80px;
+		height: 80px;
 	}
+	
+	.swiper-tabs {
+		height: 155px;
+		margin-top: 25px;
+		background-color: #FFFFFF;
+	}
+
 </style>

@@ -105,8 +105,8 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "校园云生活",
-		"navigationBarBackgroundColor": "#3CC48D",
-		"backgroundColor": "#3CC48D"
+		"navigationBarBackgroundColor": "#56CC9C",
+		"backgroundColor": "#56CC9C"
 	},
 	"permission":{
 		"scope.userLocation": {

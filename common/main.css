@@ -2576,12 +2576,19 @@ swiper.round-dot .uni-swiper-dot.uni-swiper-dot-active {
 }
 
 .screen-swiper {
-	min-height: 370upx;
+	min-height: 355upx;
 }
 
 .swiper-image {
+	position: relative;
 	margin-left: 15px;
 	margin-right: 15px;
+	z-index: 999;
+	box-shadow: #000000 0px 5px 20px 0px;//边框内阴影
+}
+
+.radius-imags {
+	border-radius: 15px 12px 12px 12px;
 }
 
 .screen-swiper image,
@@ -2940,7 +2947,7 @@ scroll-view.cu-steps .cu-item {
 }
 .grid.grid-square>view.bg-img image {
 	width: 100%;
-	height: 100%;
+	height: 200px;
 	position: absolute;
 }
 .grid.col-1.grid-square>view {
@@ -3896,7 +3903,7 @@ scroll-view.cu-steps .cu-item {
 .text-grey,
 .line-grey,
 .lines-grey {
-	color: #8799a3;
+	color: #5D9BC4;
 }
 
 .text-gray,

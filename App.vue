@@ -57,6 +57,8 @@
 @import "./common/forum.css";
 @import "common/main.css";
 @import "common/icon.css";
+@import "common/uni.css";
+
 uni-input div{
 	width: 100%;
 }

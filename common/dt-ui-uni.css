@@ -1690,11 +1690,7 @@ navigator{
  	right: 0upx;
  	z-index: 100;
  } 
- .tabs-position{
- 	top: 0px;
- 	z-index: 9999;
- 	position: fixed !important;
- }
+
 /****tabs-border***/
 .tabs-border{
 	display: flex;
@@ -2455,6 +2451,10 @@ button{
 .bg-white {
     background-color: #fff!important;
 }
+.bg-ccd {
+	background-color: #3CC48D;
+}
+
  .bg-transparent {background-color: transparent !important;}
  .bg-royal{background-color:#8a6de9 !important;}
  .bg-disabled{background-color:#FBFBFB !important;}
