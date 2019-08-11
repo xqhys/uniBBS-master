@@ -5,7 +5,7 @@
 		</view>
 		<view class="cu-bar bg-white solid-bottom">
 			<view class="action">
-				{{address.length > 20 ? address.substring(0, 20) + '...':address}}
+				{{address.length > 16 ? address.substring(0, 16) + '...':address}}
 			</view>
 			<view class="action text-green" @click="doGetLocation">
 				<text class="cuIcon-focus margin-lr-xs" style="font-size: 20px;"></text>重新定位
