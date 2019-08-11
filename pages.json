@@ -2,11 +2,45 @@
 	"pages": [ //pages数组中第一项表示应用启动页
 		
 		{
-			"path": "pages/index/index",
+			"path": "pages/home/index",
 			"style": {
 				"navigationBarTitleText": "校园云生活",
 				"onReachBottomDistance":60,
 				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/campus/index",
+			"style": {
+				"navigationBarTitleText": "微校园",
+				"onReachBottomDistance":60,
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path": "pages/life/index",
+			"style": {
+				"navigationBarTitleText": "微生活",
+				"onReachBottomDistance":60,
+				"enablePullDownRefresh":true
+			}
+		},
+		{
+			"path":"pages/add/add",
+			"style": {
+				"navigationBarTitleText": "发布帖子"
+			}
+		},
+		{
+			"path":"pages/user/index",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		},
+		{
+			"path":"pages/home/schools/schools",
+			"style": {
+				"navigationBarTitleText": "选择学校"
 			}
 		},
 		{
@@ -31,8 +65,6 @@
 		},
 		{
 			"path":"pages/register/index"
-		},{
-			"path":"pages/user/index"
 		},
 		{"path":"pages/user/info"},
 		{"path":"pages/user/user_head"},
@@ -81,8 +113,6 @@
 				},{
 					"path":"forum/my"	
 				},{
-					"path":"forum/add"	
-				},{
 					"path":"forum/edit"	
 				},{
 					"path":"forum/index"	
@@ -97,7 +127,7 @@
 	
 	],
 	"preloadRule":{
-		"pages/index/index":{
+		"pages/home/index":{
 			"network":"all",
 			"packages":["pageforum"]
 		}

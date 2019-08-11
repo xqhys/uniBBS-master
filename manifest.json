@@ -51,6 +51,12 @@
         "usingComponents" : true,
         "setting" : {
             "postcss" : true
+        },
+        "permission" : {}
+    },
+    "h5" : {
+        "sdkConfigs" : {
+            "maps" : {}
         }
     }
 }

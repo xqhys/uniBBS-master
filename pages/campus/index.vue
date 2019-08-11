@@ -1,39 +1,24 @@
 <template>
 	<view>
 		<view class="bghead">
-			<view class="title-search">
-				<view class="view-title">
-					<text class="text-white">河南师范大学</text>
-					<uni-icon type="arrowdown" color="#fff" size="20"/>
-				</view>
-				<view class="view-search">
-					<uni-icon style="line-height: 20px;" type="search" size="22" color="#666666" />
-					<text class="text-gray">请输入搜索关键词</text>
-				</view>
-			</view>
-			
 			<swiper class="screen-swiper swiper-image square-dot radius-imags" :indicator-dots="true" :circular="true" :autoplay="true"
 			 interval="5000" duration="500">
 				<swiper-item v-for="(item,index) in swiperList" :key="index">
-					<image v-if="item.type=='image'" :src="item.url" mode="aspectFill" class="radius-imags"></image>
+					<image :src="item.url" mode="aspectFill" v-if="item.type=='image'" class="radius-imags"></image>
+					<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
 				</swiper-item>
 			</swiper>
 		</view>
-		
-		<swiper class="swiper-tabs">
-			<swiper-item>
-				<scroll-view scroll-x>
-					<view class="cu-list grid no-border" :class="['col-' + gridCol]">
-						<view style="align-items: center;" class="cu-item" v-for="(item,index) in tabs" :key="index" v-if="index<gridCol*2">
-							<view class="icon-tabs" :style="[{'background-image':'url(static/tabs/' + item.cuIcon + ')'}]">
-							</view>
-							<text>{{item.name}}</text>
-						</view>
-					</view>
-				</scroll-view>
-			</swiper-item>
-		</swiper>
-		
+
+		<view class="view-tabs tabs-border" :class="{'tabs-position':isPosition}">
+			<scroll-view scroll-x class="bg-white nav" scroll-with-animation :scroll-left="scrollLeft">
+				<view class="cu-item" :class="index==TabCur?'text-green cur':''" v-for="(item,index) in tabs" :key="index"
+				 @tap="tabSelect" :data-id="index">
+					{{item.name}}
+				</view>
+			</scroll-view>
+		</view>
+
 		<view v-for="(item,fkey) in pageData.list" :key="fkey" class="cu-card dynamic" :class="isCard?'no-card':''">
 			<view class="cu-item shadow">
 				<view class="cu-list menu-avatar">
@@ -70,7 +55,7 @@
 				</view>
 			</view>
 		</view>
-		<forum-footer tab="home"></forum-footer>
+		<forum-footer tab="campus"></forum-footer>
 	</view>
 </template>
 
@@ -92,6 +77,7 @@
 		data: function() {
 			return {
 				isCard: true,
+				isPosition: false,
 				pageLoad: false,
 				pageHide: false,
 				pageData: {},
@@ -129,22 +115,45 @@
 					type: 'image',
 					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
 				}],
-				gridCol: 4, // 每行显示多少列
 				tabs: [{
-					cuIcon: 'mtwm-icon.png',
-					name: '美团外卖'
+					cuIcon: '',
+					name: '全部'
 				},
 				{
-					cuIcon: 'jzjj-icon.png',
+					cuIcon: '',
+					name: '校园'
+				},
+				{
+					cuIcon: '',
+					name: '问答'
+				},
+				{
+					cuIcon: '',
+					name: '生活'
+				},
+				{
+					cuIcon: '',
+					name: '情感'
+				},
+				{
+					cuIcon: '',
+					name: '旅游'
+				},
+				{
+					cuIcon: '',
+					name: '广告'
+				},
+				{
+					cuIcon: '',
+					name: '失物招领'
+				},
+				{
+					cuIcon: '',
 					name: '兼职/家教'
 				},
 				{
-					cuIcon: 'essc-icon.png',
-					name: '二手市场'
-				},
-				{
-					cuIcon: 'lycx-icon.png',
-					name: '旅游出行'
+					cuIcon: '',
+					name: '二手物品'
 				}]
 			}
 
@@ -153,11 +162,12 @@
 			
 		},
 		onLoad: function(option) {
-			gid = 1;
+			gid = option.gid;
 			catid = option.catid;
 			uni.setNavigationBarTitle({
-				title: '校园云生活'
+				title: '微校园'
 			});
+			
 			this.getPage();
 		},
 
@@ -198,6 +208,14 @@
 				},
 				deep: true
 			}
+		},
+		onPageScroll: function(e) {  
+		  let top = e.scrollTop;
+		  if (top > 185) {
+		  	this.isPosition = true;
+		  } else {
+		  	this.isPosition = false;
+		  }
 		},
 		methods: {
 			IsCard(e) {
@@ -282,7 +300,7 @@
 			},
 			goForum: function(id) {
 				uni.navigateTo({
-					url: "/pageforum/forum/show?id=" + id
+					url: "../forum/show?id=" + id
 				})
 			},
 			refresh: function() {
@@ -309,42 +327,19 @@
 <style>
 	.bghead {
 		width: 100%;
-		height: 435px;
+		height: 355px;
 		background-color: #56CC9C;
 		border-radius: 0px 0px 190px 190px;
 	}
 	
-	.title-search {
-		display: flex;
-		min-height: 85px;
+	.view-tabs {
+		margin-top: 22px;
 	}
 	
-	.view-title {
-		width: 60%;
-		height: 55px;
-		text-align: center;
+	.tabs-position{
+		top: 0px;
+		z-index: 9999;
+		margin-top: 0px !important;
+		position: fixed !important;
 	}
-	
-	.view-search {
-		width: 93%;
-		height: 55px;
-		line-height: 55px;
-		padding: 0 4%;
-		margin-right: 25px;
-		border-radius: 30px;
-		background-color: #fff;
-	}
-	
-	.icon-tabs {
-		background-size: cover;
-		width: 80px;
-		height: 80px;
-	}
-	
-	.swiper-tabs {
-		height: 155px;
-		margin-top: 25px;
-		background-color: #FFFFFF;
-	}
-
 </style>

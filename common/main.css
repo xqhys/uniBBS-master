@@ -512,7 +512,7 @@ radio.white.checked .uni-radio-input {
 }
 
 .solid-bottom::after {
-	border-bottom: 1upx solid rgba(0, 0, 0, 0.1);
+	border-bottom: 5upx solid rgba(0, 0, 0, 0.1);
 }
 
 .solid-left::after {
@@ -2451,7 +2451,7 @@ button.cuIcon.lg {
 	vertical-align: middle;
 	margin-left: auto;
 	margin-right: auto;
-	width: 680upx;
+	width: 560upx;
 	max-width: 100%;
 	background-color: #f8f8f8;
 	border-radius: 10upx;

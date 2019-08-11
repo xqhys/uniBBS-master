@@ -1,205 +1,189 @@
 <template>
-	<div class="body">
-		<div v-if="pageLoad">
-			 
-			<div class="main-body">
-				<div class="uhead">
-
-					<image @click="gourl('../user/user_head')" class="uhead-img" :src="pageData.data.user_head+'.100x100.jpg'"></image>
-
-					<div class="uhead-box">
-						<div class="uhead-nick">{{pageData.data.nickname}}</div>
-						 
-						<div class="uhead-rnum flex-ai-center flex">
-
-							金币
-							<text class="cl-money mgl-5 mgr-5">{{pageData.data.gold}}</text>
-
-							积分
-							<text class="cl-money mgl-5">{{pageData.data.grade}}</text>
-
-						</div>
-
-					</div>
-					<navigator url="../user/set" class="flex-center btn-small btn-link iconfont icon-settings"></navigator>
-				</div>
-				 
-				 
-				<div v-for="(item,index) in pageData.navList" :key="index">
-					<div class="m-navPic mgb-5">
-						 
-						<navigator v-for="(cc,ccindex) in item.child" :url="cc.link_url" :key="ccindex" class="m-navPic-item">
-							<div class="m-navPic-icon" v-bind:class="cc.icon"></div>
-							<div class="m-navPic-title">{{cc.title}}</div>
-						</navigator>
-						 
-					</div>
-				</div>	
-				 
-
-
-			</div>
-			 
-		</div>
-		<div v-else class="bg-fff pd-10">
-				<div class="flex flex-center mgb-10 cl2">您还未登录,请先登录</div>
-				<div class="flex flex-center">
-					<navigator  class="btn-small" url="../login/index">前往登录</navigator>
-				</div>
-			
-		</div>
-		<mt-footer tab="user"></mt-footer>
-	</div>
+	<view class="center">
+		<view class="logo">
+			<image class="logo-img" :src="userinfo.userData.avatarUrl"></image>
+			<view class="logo-title">
+				<text class="uer-name">{{userinfo.userData.nickName}}</text>
+			</view>
+		</view>
+		<view class="center-list">
+			<view class="center-list-item">
+				<text class="list-icon">&#xe639;</text>
+				<text class="list-text">新消息通知</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+			</view>
+		</view>
+		<view class="center-list">
+			<view class="center-list-item">
+				<text class="list-icon">&#xe60b;</text>
+				<text class="list-text">帮助与反馈</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+			</view>
+		</view>
+		<view class="center-list">
+			<view class="center-list-item">
+				<text class="list-icon">&#xe65f;</text>
+				<text class="list-text">服务条款及隐私</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+			</view>
+		</view>
+		<view class="center-list">
+			<view class="center-list-item">
+				<text class="list-icon">&#xe614;</text>
+				<text class="list-text">关于应用</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+			</view>
+		</view>
+		<forum-footer tab="user"></forum-footer>
+	</view>
 </template>
 
 <script>
-	 
-	import mtFooter from "../../components/footer.vue";
+	import forumFooter from "../../components/forumfooter.vue";
+	
 	export default {
 		components: {
-			mtFooter
+			forumFooter
 		},
-		data: function(){
+		data() {
 			return {
-				pageLoad: false,
-				pageHide: false,
-				pageData: {}
+				login: false,
+				avatarUrl: '/static/logo.png',
+				uerInfo: {},
+				userinfo: uni.getStorageSync('userinfo')
 			}
 		},
-		onLoad: function (option) {
-			uni.setNavigationBarTitle({
-				title: "个人中心",
-			})
-			this.getPage();
-		},
-		onShow: function () {
-			if (this.pageHide) {
-				this.pageHide = false;
-				this.getPage();
-			}
-		},
-		onHide: function () {
-			this.pageHide = true;
+		onLoad: function(option) {
+			console.log(this.userinfo.userData.nickName)
 		},
 		methods: {
-			gourl: function (url) {
-				uni.navigateTo({
-					url: url,
-				})
-			},
-			getPage: function () {
-				var that = this;
-				uni.request({
-					url: that.app.apiHost + "?m=user&ajax=1",
-					data: {
-						authcode: that.app.getAuthCode(),
-						fromapp:that.app.fromapp()
-					},
-					success: function (res) {
-						if (res.data.error == 1000) {
-							/*
-							uni.navigateTo({
-								url: "../login/index",
-							})
-							*/
-						} else {
-							that.pageLoad = true;
-							that.pageData = res.data.data;
-						}
-
-
-					}
-				})
+			goLogin() {
+				if (!this.login) {
+					console.log('点击前往登录');
+				}
 			}
-		},
+		}
 	}
 </script>
 
 <style>
-	.body {
-		background-color: #e3e3e3;
+	@font-face {
+		font-family: texticons;
+		font-weight: normal;
+		font-style: normal;
+		src: url('https://at.alicdn.com/t/font_984210_5cs13ndgqsn.ttf') format('truetype');
 	}
 
-	.uhead {
+	page,
+	view {
 		display: flex;
+	}
+
+	page {
+		background-color: #f8f8f8;
+	}
+
+	.center {
+		flex-direction: column;
+	}
+
+	.logo {
+		width: 750upx;
+		height: 240upx;
+		padding: 20upx;
+		box-sizing: border-box;
+		background-color: #56CC9C;
 		flex-direction: row;
-		padding: 22upx;
-		background-color: #fff;
-		margin-bottom: 11upx;
+		align-items: center;
 	}
 
-	.uhead-img {
-		width: 172upx;
-		height: 172upx;
-		margin-right: 22upx;
-		display: block;
-		border-radius: 50%;
+	.logo-hover {
+		opacity: 0.8;
 	}
 
-	.uhead-box {
+	.logo-img {
+		width: 150upx;
+		height: 150upx;
+		border-radius: 150upx;
+	}
+
+	.logo-title {
+		height: 150upx;
 		flex: 1;
+		align-items: center;
+		justify-content: space-between;
+		flex-direction: row;
+		margin-left: 20upx;
 	}
 
-	.uhead-nick {
-		margin-bottom: 10upx;
+	.uer-name {
+		height: 60upx;
+		line-height: 60upx;
+		font-size: 38upx;
+		color: #FFFFFF;
+	}
+
+	.go-login.navigat-arrow {
+		font-size: 38upx;
+		color: #FFFFFF;
+	}
+
+	.login-title {
+		height: 150upx;
+		align-items: self-start;
+		justify-content: center;
+		flex-direction: column;
+		margin-left: 20upx;
+	}
+
+	.center-list {
+		background-color: #FFFFFF;
+		margin-top: 20upx;
+		width: 750upx;
+		flex-direction: column;
+	}
+
+	.center-list-item {
+		height: 90upx;
+		width: 750upx;
+		box-sizing: border-box;
+		flex-direction: row;
+		padding: 0upx 20upx;
+	}
+
+	.border-bottom {
+		border-bottom-width: 1upx;
+		border-color: #c8c7cc;
+		border-bottom-style: solid;
+	}
+
+	.list-icon {
+		width: 40upx;
+		height: 90upx;
+		line-height: 90upx;
 		font-size: 34upx;
-	}
-
-	.uhead-rnum {
-		color: #999;
-		margin-bottom: 32upx;
-		line-height: 29upx;
-		display: flex;
-		font-size: 29upx;
-	}
-
-	.order-box {
-		background-color: #fff;
-		padding: 22upx;
-		margin-bottom: 22upx;
-	}
-
-	.order-box-hd {
-		display: flex;
-		flex-direction: row;
-		line-height: 79upx;
-		border-bottom: 2upx solid #ddd;
-		margin-bottom: 22upx;
-	}
-
-	.order-box-status {
-		display: flex;
-		flex-direction: row;
-	}
-
-	.order-box-item {
-		flex: 1;
+		color: #2F85FC;
 		text-align: center;
-		font-size: 32upx;
-		color: #666;
+		font-family: texticons;
+		margin-right: 20upx;
 	}
 
-	.order-box-item .iconfont {
-		display: block;
-		color: #666;
-		font-size: 42upx;
-	}
-
-	.row-item {
-		display: flex;
-		flex-direction: row;
-		padding: 10upx 16upx;
-		margin-bottom: 10upx;
-		font-size: 35upx;
+	.list-text {
+		height: 90upx;
+		line-height: 90upx;
+		font-size: 34upx;
 		color: #555;
-		border-bottom: 2upx solid #eee;
+		flex: 1;
+		text-align: left;
 	}
 
-	.row-icon {
-		position: relative;
-		top: -5upx;
-		font-size: 40upx;
-		margin-right: 10upx;
+	.navigat-arrow {
+		height: 90upx;
+		width: 40upx;
+		line-height: 90upx;
+		font-size: 34upx;
 		color: #555;
+		text-align: right;
+		font-family: texticons;
 	}
 </style>

@@ -1,30 +1,19 @@
 <template>
 	<view>
 		<view class="bghead">
-			<view class="title-search">
-				<view class="view-title">
-					<text class="text-white">河南师范大学</text>
-					<uni-icon type="arrowdown" color="#fff" size="20"/>
-				</view>
-				<view class="view-search">
-					<uni-icon style="line-height: 20px;" type="search" size="22" color="#666666" />
-					<text class="text-gray">请输入搜索关键词</text>
-				</view>
-			</view>
-			
 			<swiper class="screen-swiper swiper-image square-dot radius-imags" :indicator-dots="true" :circular="true" :autoplay="true"
 			 interval="5000" duration="500">
 				<swiper-item v-for="(item,index) in swiperList" :key="index">
-					<image v-if="item.type=='image'" :src="item.url" mode="aspectFill" class="radius-imags"></image>
+					<image :src="item.url" mode="aspectFill" v-if="item.type=='image'" class="radius-imags"></image>
 				</swiper-item>
 			</swiper>
 		</view>
-		
+
 		<swiper class="swiper-tabs">
 			<swiper-item>
 				<scroll-view scroll-x>
 					<view class="cu-list grid no-border" :class="['col-' + gridCol]">
-						<view style="align-items: center;" class="cu-item" v-for="(item,index) in tabs" :key="index" v-if="index<gridCol*2">
+						<view style="align-items: center;" class="cu-item " v-for="(item,index) in tabs" :key="index" v-if="index<gridCol*2">
 							<view class="icon-tabs" :style="[{'background-image':'url(static/tabs/' + item.cuIcon + ')'}]">
 							</view>
 							<text>{{item.name}}</text>
@@ -70,7 +59,7 @@
 				</view>
 			</view>
 		</view>
-		<forum-footer tab="home"></forum-footer>
+		<forum-footer tab="life"></forum-footer>
 	</view>
 </template>
 
@@ -145,6 +134,10 @@
 				{
 					cuIcon: 'lycx-icon.png',
 					name: '旅游出行'
+				},
+				{
+					cuIcon: 'pt-icon.png',
+					name: '跑腿'
 				}]
 			}
 
@@ -156,8 +149,11 @@
 			gid = 1;
 			catid = option.catid;
 			uni.setNavigationBarTitle({
-				title: '校园云生活'
+				title: '微生活'
 			});
+			
+			
+			
 			this.getPage();
 		},
 
@@ -309,42 +305,22 @@
 <style>
 	.bghead {
 		width: 100%;
-		height: 435px;
+		height: 355px;
 		background-color: #56CC9C;
 		border-radius: 0px 0px 190px 190px;
 	}
 	
-	.title-search {
-		display: flex;
-		min-height: 85px;
-	}
-	
-	.view-title {
-		width: 60%;
-		height: 55px;
-		text-align: center;
-	}
-	
-	.view-search {
-		width: 93%;
-		height: 55px;
-		line-height: 55px;
-		padding: 0 4%;
-		margin-right: 25px;
-		border-radius: 30px;
-		background-color: #fff;
+	.swiper-tabs {
+		height: 290px;
+		margin-top: 20px;
+		background-color: #FFFFFF;
 	}
 	
 	.icon-tabs {
-		background-size: cover;
 		width: 80px;
 		height: 80px;
+		margin-top: -10px;
+		background-size: cover;
 	}
 	
-	.swiper-tabs {
-		height: 155px;
-		margin-top: 25px;
-		background-color: #FFFFFF;
-	}
-
 </style>
