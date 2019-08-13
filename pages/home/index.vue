@@ -6,22 +6,22 @@
 				<view class="title-search">
 					<view class="view-title" @click="goSchools">
 						<text class="text-white">河南师范大学</text>
-						<uni-icon type="arrowdown" color="#fff" size="20"/>
+						<uni-icon type="arrowdown" color="#fff" size="20" />
 					</view>
 					<view class="view-search">
 						<uni-icon style="line-height: 20px;" type="search" size="22" color="#666666" />
 						<text class="text-gray">请输入搜索关键词</text>
 					</view>
 				</view>
-				
-				<swiper class="screen-swiper swiper-image square-dot radius-imags" :indicator-dots="true" :circular="true" :autoplay="true"
-				 interval="5000" duration="500">
+
+				<swiper class="screen-swiper swiper-image square-dot radius-imags" :indicator-dots="true" :circular="true"
+				 :autoplay="true" interval="5000" duration="500">
 					<swiper-item v-for="(item,index) in swiperList" :key="index">
 						<image v-if="item.type=='image'" :src="item.url" mode="aspectFill" class="radius-imags"></image>
 					</swiper-item>
 				</swiper>
 			</view>
-			
+
 			<swiper class="swiper-tabs">
 				<swiper-item>
 					<scroll-view scroll-x>
@@ -35,7 +35,7 @@
 					</scroll-view>
 				</swiper-item>
 			</swiper>
-			
+
 			<view v-for="(item,fkey) in pageData.list" :key="fkey" class="cu-card dynamic" :class="isCard?'no-card':''">
 				<view class="cu-item shadow">
 					<view class="cu-list menu-avatar">
@@ -59,7 +59,7 @@
 						 v-for="(img,imgIndex) in item.imgslist" :key="imgIndex">
 						</view>
 					</view>
-					
+
 					<view class="uni-flex cu-bar uni-row text-gray text-sm text-right padding">
 						<view class="text-grey">
 							<uni-icon type="location-filled" size="15" color="green" />
@@ -72,9 +72,9 @@
 					</view>
 				</view>
 			</view>
-			<forum-footer tab="home"></forum-footer>
+			<forum-footer tab="home" @apex="apex"></forum-footer>
 		</view>
-		
+
 		<view class="cu-modal" :class="{'show':isShow}">
 			<view class="cu-dialog">
 				<view class="text-black">
@@ -84,7 +84,7 @@
 					<view class="content-title">
 						<text>
 							校鲜大学生生活平台，欢迎您的加入，
-							  让我们共同维护大学生平台秩序
+							让我们共同维护大学生平台秩序
 						</text>
 					</view>
 				</view>
@@ -100,7 +100,7 @@
 	import uniIcon from '@/components/uni-icon.vue'
 	import schools from '@/pages/home/schools/schools.vue'
 	import forumFooter from "../../components/forumfooter.vue";
-	
+
 	var app = require("../../common/common.js");
 	var per_page = 0;
 	var isfirst = true;
@@ -150,28 +150,29 @@
 					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
 				}],
 				tabs: [{
-					cuIcon: 'mtwm-icon.png',
-					name: '美团外卖'
-				},
-				{
-					cuIcon: 'jzjj-icon.png',
-					name: '兼职/家教'
-				},
-				{
-					cuIcon: 'essc-icon.png',
-					name: '二手市场'
-				},
-				{
-					cuIcon: 'lycx-icon.png',
-					name: '旅游出行'
-				}]
+						cuIcon: 'mtwm-icon.png',
+						name: '美团外卖'
+					},
+					{
+						cuIcon: 'jzjj-icon.png',
+						name: '兼职/家教'
+					},
+					{
+						cuIcon: 'essc-icon.png',
+						name: '二手市场'
+					},
+					{
+						cuIcon: 'lycx-icon.png',
+						name: '旅游出行'
+					}
+				]
 			}
 
 		},
 		onReady: function() {
 			if (this.userinfo) {
 				this.isShow = !this.userinfo.isLogin;
-			}else {
+			} else {
 				let userinfo = {
 					address: '定位中...',
 					isLogin: false,
@@ -193,18 +194,12 @@
 			});
 			this.getPage();
 		},
-		onShow: function() {
-		},
-		onHide: function() {
-		},
-		onReachBottom: function() {
-		},
-		onPullDownRefresh: function() {
-		},
-		computed: {
-		},
-		watch: {
-		},
+		onShow: function() {},
+		onHide: function() {},
+		onReachBottom: function() {},
+		onPullDownRefresh: function() {},
+		computed: {},
+		watch: {},
 		methods: {
 			IsCard(e) {
 				this.isCard = e.detail.value
@@ -212,25 +207,25 @@
 			hideModal() {
 				let self = this;
 				//#ifdef MP-WEIXIN
-					uni.login({
-					  provider: 'weixin',
-					  success: function (loginRes) {
-						let user_code = loginRes.code;//js_code可以给后台获取unionID或openID作为用户标识
+				uni.login({
+					provider: 'weixin',
+					success: function(loginRes) {
+						let user_code = loginRes.code; //js_code可以给后台获取unionID或openID作为用户标识
 						uni.getUserInfo({ // 获取用户信息
-						  provider: 'weixin',
-						  success: function (infoRes) {
-							  let userinfo = uni.getStorageSync('userinfo');
-							  userinfo.isLogin = true;
-							  userinfo.user_code = user_code;
-							  userinfo.userData = JSON.parse(infoRes.rawData);
-							  uni.setStorageSync('userinfo', userinfo);
-							  self.isShow = false;
-						},
-						  fail:function(res){}
+							provider: 'weixin',
+							success: function(infoRes) {
+								let userinfo = uni.getStorageSync('userinfo');
+								userinfo.isLogin = true;
+								userinfo.user_code = user_code;
+								userinfo.userData = JSON.parse(infoRes.rawData);
+								uni.setStorageSync('userinfo', userinfo);
+								self.isShow = false;
+							},
+							fail: function(res) {}
 						})
-					  },
-					  fail:function(res){}
-					})
+					},
+					fail: function(res) {}
+				})
 				//#endif
 			},
 			getPage: function() {
@@ -270,6 +265,12 @@
 				uni.navigateTo({
 					url: "/pages/home/schools/schools"
 				})
+			},
+			apex() {
+				uni.pageScrollTo({
+					duration: 0,
+					scrollTop: 0
+				})
 			}
 		}
 	}
@@ -282,18 +283,18 @@
 		background-color: #56CC9C;
 		border-radius: 0px 0px 190px 190px;
 	}
-	
+
 	.title-search {
 		display: flex;
 		min-height: 85px;
 	}
-	
+
 	.view-title {
 		width: 60%;
 		height: 55px;
 		text-align: center;
 	}
-	
+
 	.view-search {
 		width: 93%;
 		height: 55px;
@@ -303,27 +304,26 @@
 		border-radius: 30px;
 		background-color: #fff;
 	}
-	
+
 	.icon-tabs {
 		background-size: cover;
 		width: 80px;
 		height: 80px;
 	}
-	
+
 	.swiper-tabs {
 		height: 155px;
 		margin-top: 25px;
 		background-color: #FFFFFF;
 	}
-	
+
 	.notice-title {
 		font-size: 40px;
 		font-weight: bold;
 		margin-top: 50px;
 	}
-	
+
 	.content-title {
 		padding: 10px 0px 70px 0px;
 	}
-
 </style>

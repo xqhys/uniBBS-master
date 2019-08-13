@@ -59,7 +59,7 @@
 				</view>
 			</view>
 		</view>
-		<forum-footer tab="life"></forum-footer>
+		<forum-footer tab="life" @apex="apex"></forum-footer>
 	</view>
 </template>
 
@@ -295,14 +295,17 @@
 				this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60;
 				console.log(this.TabCur)
 			},
-			scrolltoupper() {
-				console.log(22222222222222222222)
+			apex() {
+				uni.pageScrollTo({
+					duration: 0,
+					scrollTop: 0
+				})
 			}
 		},
 	}
 </script>
 
-<style>
+<style scoped>
 	.bghead {
 		width: 100%;
 		height: 355px;

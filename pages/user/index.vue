@@ -34,7 +34,7 @@
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
-		<forum-footer tab="user"></forum-footer>
+		<forum-footer tab="user" :isShow="false"></forum-footer>
 	</view>
 </template>
 
@@ -66,7 +66,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	@font-face {
 		font-family: texticons;
 		font-weight: normal;

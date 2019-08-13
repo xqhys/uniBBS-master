@@ -1593,7 +1593,7 @@ navigator{
 }
  /******footer*******/
  .footer-row{
-	height: 120upx;
+	height: 160upx;
  }
 .footer{
 	position: fixed;
@@ -1604,7 +1604,7 @@ navigator{
 	background-color: #fafafa;
 	border-top: 1px solid #eee;
 	font-size: 33.6upx;
-	display: flex;
+	/* display: flex; */
 	flex-direction: row;
 	align-items: center;
 }

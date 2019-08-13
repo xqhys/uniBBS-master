@@ -10,7 +10,7 @@
 			}
 		},
 		{
-			"path": "pages/campus/index",
+			"path": "pages/schools/index",
 			"style": {
 				"navigationBarTitleText": "微校园",
 				"onReachBottomDistance":60,
@@ -28,7 +28,13 @@
 		{
 			"path":"pages/add/add",
 			"style": {
-				"navigationBarTitleText": "发布帖子"
+				"navigationBarTitleText": "发布校园"
+			}
+		},
+		{
+			"path":"pages/add/choicetheme",
+			"style": {
+				"navigationBarTitleText": "发布校园"
 			}
 		},
 		{
@@ -42,7 +48,7 @@
 			"style": {
 				"navigationBarTitleText": "选择学校"
 			}
-		},
+		}/* ,
 		{
 			"path":"pages/hello",
 			"style": {
@@ -94,7 +100,7 @@
 		{"path":"pages/user/set","style":{"navigationBarTitleText":"用户设置"}},
 		{"path":"pages/kefu/index"},
 		{"path":"pages/bankcard/index"},
-		{"path":"pages/html/aboutus"}
+		{"path":"pages/html/aboutus"} */
 		
 		
 		
@@ -134,7 +140,6 @@
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "校园云生活",
 		"navigationBarBackgroundColor": "#56CC9C",
 		"backgroundColor": "#56CC9C"
 	},
