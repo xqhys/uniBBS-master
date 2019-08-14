@@ -4,7 +4,7 @@
 		{
 			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "校园云生活",
+				"navigationBarTitleText": "微校园，微生活",
 				"onReachBottomDistance":60,
 				"enablePullDownRefresh":true
 			}

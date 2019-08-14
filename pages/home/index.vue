@@ -123,43 +123,32 @@
 				swiperList: [{
 					id: 0,
 					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
+					url: '../../static/swiper/1-1.jpg'
 				}, {
 					id: 1,
 					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big37006.jpg',
+					url: '../../static/swiper/2-1.jpg'
 				}, {
 					id: 2,
 					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
+					url: '../../static/swiper/3-1.jpg'
 				}, {
 					id: 3,
 					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-				}, {
-					id: 4,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-				}, {
-					id: 5,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-				}, {
-					id: 6,
-					type: 'image',
-					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
+					url: '../../static/swiper/4-1.jpg'
 				}],
 				tabs: [{
 						cuIcon: 'mtwm-icon.png',
-						name: '美团外卖'
-					},
-					{
-						cuIcon: 'jzjj-icon.png',
-						name: '兼职/家教'
+						name: '美食外卖'
 					},
 					{
 						cuIcon: 'essc-icon.png',
 						name: '二手市场'
+					}
+					,
+					{
+						cuIcon: 'jzjj-icon.png',
+						name: '兼职/家教'
 					},
 					{
 						cuIcon: 'lycx-icon.png',
@@ -190,7 +179,7 @@
 			gid = 1;
 			catid = option.catid;
 			uni.setNavigationBarTitle({
-				title: '校园云生活'
+				title: '微校园，微生活'
 			});
 			this.getPage();
 		},
@@ -307,12 +296,12 @@
 
 	.icon-tabs {
 		background-size: cover;
-		width: 80px;
-		height: 80px;
+		width: 95px;
+		height: 95px;
 	}
 
 	.swiper-tabs {
-		height: 155px;
+		height: 185px;
 		margin-top: 25px;
 		background-color: #FFFFFF;
 	}
