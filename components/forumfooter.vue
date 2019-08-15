@@ -72,12 +72,12 @@
 		methods:{
 			goHome:function(){
 				uni.reLaunch({
-					url:"/pages/home/index?gid=1"
+					url:"/pages/home/index"
 				})
 			},
 			goSchools:function(){
 				uni.reLaunch({
-					url:"/pageforum/schools/index?gid=1"
+					url:"/pageforum/schools/index"
 				})
 			},
 			goAdd:function(){
@@ -87,7 +87,7 @@
 			},
 			goLife:function(){
 				uni.reLaunch({
-					url:"/pageforum/life/index?gid=1"
+					url:"/pageforum/life/index"
 				})
 			},
 			goUser:function(){

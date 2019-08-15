@@ -14,7 +14,7 @@
 			<swiper-item>
 				<scroll-view scroll-x>
 					<view class="cu-list grid no-border tags-list" :class="['col-' + gridCol]">
-						<view style="align-items: center;" class="cu-item " v-for="(item,index) in tabs" :key="index" v-if="index<gridCol*2">
+						<view @click="goTabs" class="cu-item tabs-item" v-for="(item,index) in tabs" :key="index" :id="index" v-if="index<gridCol*2">
 							<view class="icon-tabs" :style="[{'background-image':'url(static/tabs/' + item.cuIcon + ')'}]">
 							</view>
 							<text>{{item.name}}</text>
@@ -66,9 +66,9 @@
 
 <script>
 	import uniIcon from '@/components/uni-icon.vue'
-	import forumFooter from "../../components/forumfooter.vue";
+	import forumFooter from "@/components/forumfooter.vue";
 
-	var app = require("../../common/common.js");
+	var app = require("@/common/common.js");
 	var per_page = 0;
 	var isfirst = true;
 	var catid = 0;
@@ -96,12 +96,12 @@
 						name: '美团外卖'
 					},
 					{
-						cuIcon: 'jzjj-icon.png',
-						name: '兼职/家教'
-					},
-					{
 						cuIcon: 'essc-icon.png',
 						name: '二手市场'
+					},
+					{
+						cuIcon: 'jzjj-icon.png',
+						name: '兼职/家教'
 					},
 					{
 						cuIcon: 'lycx-icon.png',
@@ -186,6 +186,49 @@
 				this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60;
 				console.log(this.TabCur)
 			},
+			goTabs(e) {
+				switch (e.currentTarget.id){
+					case '0':
+						uni.navigateToMiniProgram({
+						  appId: '',
+						  path: 'pages/index/index?id=123',
+						  extraData: {
+						    'data1': 'test'
+						  },
+						  success(res) {
+						    // 打开成功
+						  }
+						})
+						break;
+					case '1':
+						uni.navigateToMiniProgram({
+						  appId: '',
+						  path: 'pages/index/index?id=123',
+						  extraData: {
+						    'data1': 'test'
+						  },
+						  success(res) {
+						    // 打开成功
+						  }
+						})
+						break;
+					case '2':
+						uni.navigateTo({
+							url: '/pageforum/schools/index?tabs=jzjj'
+						})
+						break;
+					case '3':
+						uni.navigateTo({
+							url: '/pageforum/schools/index?tabs=lycx'
+						})
+						break;
+					default:
+						uni.navigateTo({
+							url: '/pageforum/schools/index?tabs=paotui'
+						})
+						break;
+				}
+			},
 			apex() {
 				uni.pageScrollTo({
 					duration: 0,
@@ -219,5 +262,9 @@
 		height: 95px;
 		margin-top: -20px;
 		background-size: cover;
+	}
+	
+	.tabs-item {
+		align-items: center;
 	}
 </style>

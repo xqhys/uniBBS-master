@@ -16,8 +16,8 @@
 
 				<swiper class="screen-swiper swiper-image square-dot radius-imags" :indicator-dots="true" :circular="true"
 				 :autoplay="true" interval="5000" duration="500">
-					<swiper-item v-for="(item,index) in swiperList" :key="index">
-						<image v-if="item.type=='image'" :src="item.url" mode="aspectFill" class="radius-imags"></image>
+					<swiper-item @click="goApp" v-for="(item,index) in swiperList" :key="index" :id="index">
+						<image :src="item.url" mode="aspectFill" class="radius-imags"></image>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -26,7 +26,7 @@
 				<swiper-item>
 					<scroll-view scroll-x>
 						<view class="cu-list grid no-border" :class="['col-' + gridCol]">
-							<view style="align-items: center;" class="cu-item" v-for="(item,index) in tabs" :key="index" v-if="index<gridCol*2">
+							<view @click="goTabs" class="cu-item tabs-item" v-for="(item,index) in tabs" :key="index" :id="index" v-if="index<gridCol*2">
 								<view class="icon-tabs" :style="[{'background-image':'url(static/tabs/' + item.cuIcon + ')'}]">
 								</view>
 								<text>{{item.name}}</text>
@@ -101,7 +101,7 @@
 	import schools from '@/pages/home/location.vue'
 	import forumFooter from "@/components/forumfooter.vue";
 
-	var app = require("../../common/common.js");
+	var app = require("@/common/common.js");
 	var per_page = 0;
 	var isfirst = true;
 	var catid = 0;
@@ -256,6 +256,61 @@
 					url: "/pages/home/location"
 				})
 			},
+			goApp(e) {
+				switch (e.currentTarget.id){
+					case '0':
+						uni.navigateToMiniProgram({
+						  appId: '',
+						  path: 'pages/index/index?id=123',
+						  extraData: {
+						    'data1': 'test'
+						  },
+						  success(res) {
+						    // 打开成功
+						  }
+						})
+						break;
+					case '1':
+						uni.navigateToMiniProgram({
+						  appId: '',
+						  path: 'pages/index/index?id=123',
+						  extraData: {
+						    'data1': 'test'
+						  },
+						  success(res) {
+						    // 打开成功
+						  }
+						})
+						break;
+					case '2':
+						uni.navigateTo({
+							url: '/pageforum/schools/index'
+						})
+						break;
+					default:
+						uni.navigateTo({
+							url: '/pageforum/life/index'
+						})
+						break;
+				}
+			},
+			goTabs(e) {
+				switch (e.currentTarget.id){
+					case '2':
+						uni.navigateTo({
+							url:  '/pageforum/schools/index?tabs=jzjj'
+						})
+						break;
+					case '3':
+						uni.navigateTo({
+							url:  '/pageforum/schools/index?tabs=lycx'
+						})
+						break;
+					default:
+						this.goApp(e);
+						break;
+				}
+			},
 			apex() {
 				uni.pageScrollTo({
 					duration: 0,
@@ -295,10 +350,9 @@
 		background-color: #fff;
 	}
 
-	.icon-tabs {
-		background-size: cover;
-		width: 95px;
-		height: 95px;
+
+	.tabs-item {
+		align-items: center;
 	}
 
 	.swiper-tabs {
@@ -307,6 +361,13 @@
 		background-color: #FFFFFF;
 	}
 
+	
+	.icon-tabs {
+		background-size: cover;
+		width: 95px;
+		height: 95px;
+	}
+	
 	.notice-title {
 		font-size: 40px;
 		font-weight: bold;

@@ -61,9 +61,9 @@
 
 <script>
 	import uniIcon from '@/components/uni-icon.vue'
-	import forumFooter from "../../components/forumfooter.vue";
+	import forumFooter from "@/components/forumfooter.vue";
 	
-	var app = require("../../common/common.js");
+	var app = require("@/common/common.js");
 	var per_page = 0;
 	var isfirst = true;
 	var catid = 0;
@@ -134,7 +134,16 @@
 			
 		},
 		onLoad: function(option) {
-			gid = option.gid;
+			if (option.tabs === 'jzjj') {
+				this.TabCur = 8;
+			} else if (option.tabs === 'lycx') {
+				this.TabCur = 5;
+			} else if (option.tabs === 'paotui') {
+				this.TabCur = 7;
+			}
+			this.scrollLeft = (this.TabCur - 1) * 60;
+			
+			gid = 1;
 			catid = option.catid;
 			uni.setNavigationBarTitle({
 				title: '微校园'
@@ -208,7 +217,6 @@
 			tabSelect(e) {
 				this.TabCur = e.currentTarget.dataset.id;
 				this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60;
-				console.log(this.TabCur)
 			},
 			apex() {
 				uni.pageScrollTo({

@@ -39,7 +39,7 @@
 </template>
 
 <script>
-	import forumFooter from "../../components/forumfooter.vue";
+	import forumFooter from "@/components/forumfooter.vue";
 
 	export default {
 		components: {

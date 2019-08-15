@@ -47,17 +47,17 @@
     /* 快应用特有相关 */
     "mp-weixin" : {
         /* 小程序特有相关 */
-        "appid" : "wxc6cfd15b8542ffcb",
+        "appid" : "wx5ba8d1a42db7c474",
         "usingComponents" : true,
         "setting" : {
             "postcss" : true,
             "minified" : true
         },
         "permission" : {
-			"scope.userLocation": {
-					  "desc": "你的位置信息将用于定位学校"
-			}
-		}
+            "scope.userLocation" : {
+                "desc" : "你的位置信息将用于定位学校"
+            }
+        }
     },
     "h5" : {
         "sdkConfigs" : {
