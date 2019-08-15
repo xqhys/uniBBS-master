@@ -7,30 +7,30 @@
 			</view>
 		</view>
 		<view class="center-list">
-			<view class="center-list-item">
+			<view class="center-list-item" @click="message">
 				<text class="list-icon">&#xe639;</text>
 				<text class="list-text">新消息通知</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
 		<view class="center-list">
-			<view class="center-list-item">
+			<view class="center-list-item" @click="feedback">
 				<text class="list-icon">&#xe60b;</text>
 				<text class="list-text">帮助与反馈</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
-		<view class="center-list">
+		<!-- <view class="center-list">
 			<view class="center-list-item">
 				<text class="list-icon">&#xe65f;</text>
 				<text class="list-text">服务条款及隐私</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
-		</view>
+		</view> -->
 		<view class="center-list">
-			<view class="center-list-item">
+			<view class="center-list-item" @click="aboutus">
 				<text class="list-icon">&#xe614;</text>
-				<text class="list-text">关于应用</text>
+				<text class="list-text">关于我们</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
@@ -40,27 +40,34 @@
 
 <script>
 	import forumFooter from "../../components/forumfooter.vue";
-	
+
 	export default {
 		components: {
 			forumFooter
 		},
 		data() {
 			return {
-				login: false,
-				avatarUrl: '/static/logo.png',
-				uerInfo: {},
 				userinfo: uni.getStorageSync('userinfo')
 			}
 		},
 		onLoad: function(option) {
-			console.log(this.userinfo.userData.nickName)
+
 		},
 		methods: {
-			goLogin() {
-				if (!this.login) {
-					console.log('点击前往登录');
-				}
+			message() {
+				uni.navigateTo({
+					url: "/pages/user/message"
+				})
+			},
+			feedback() {
+				uni.navigateTo({
+					url: "/pages/user/feedback"
+				})
+			},
+			aboutus() {
+				uni.navigateTo({
+					url: "/pages/user/aboutus"
+				})
 			}
 		}
 	}

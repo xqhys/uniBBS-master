@@ -76,10 +76,8 @@
 		background-color: #F4F5F6;
 	}
 	.footer-left {
-
 		width: 80upx;
 		height: 80upx;
-
 		display: flex;
 		justify-content: center;
 		align-items: center;

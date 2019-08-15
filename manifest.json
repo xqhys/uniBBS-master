@@ -50,9 +50,14 @@
         "appid" : "wx5ba8d1a42db7c474",
         "usingComponents" : true,
         "setting" : {
-            "postcss" : true
+            "postcss" : true,
+            "minified" : true
         },
-        "permission" : {}
+        "permission" : {
+			"scope.userLocation": {
+					  "desc": "你的位置信息将用于定位学校"
+			}
+		}
     },
     "h5" : {
         "sdkConfigs" : {

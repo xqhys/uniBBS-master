@@ -77,17 +77,17 @@
 			},
 			goSchools:function(){
 				uni.reLaunch({
-					url:"/pages/schools/index?gid=1"
+					url:"/pageforum/schools/index?gid=1"
 				})
 			},
 			goAdd:function(){
 				uni.navigateTo({
-					url:"/pages/add/choicetheme"
+					url:"/pageforum/forum/choicetheme"
 				})
 			},
 			goLife:function(){
 				uni.reLaunch({
-					url:"/pages/life/index?gid=1"
+					url:"/pageforum/life/index?gid=1"
 				})
 			},
 			goUser:function(){
