@@ -144,7 +144,8 @@
 					{
 						cuIcon: 'essc-icon.png',
 						name: '二手市场'
-					},
+					}
+					,
 					{
 						cuIcon: 'jzjj-icon.png',
 						name: '兼职/家教'

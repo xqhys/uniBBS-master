@@ -55,7 +55,6 @@
 					"path": "life/index",
 					"style": {
 						"navigationBarTitleText": "微生活",
-						"onReachBottomDistance": 60,
 						"enablePullDownRefresh": true
 					}
 				},
