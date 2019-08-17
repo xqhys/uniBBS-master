@@ -76,7 +76,11 @@
 				this.sizeType = ['压缩', '原图', '压缩或原图'],
 				this.countIndex = 8;
 		},
-		
+		onLoad(options) {
+			uni.setNavigationBarTitle({
+				title: '发布' + options.theme
+			});
+		},
 		methods: {
 			async publish(){
 				if (!this.input_content) {

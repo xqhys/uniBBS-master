@@ -5,10 +5,10 @@
 			<view class="bghead">
 				<view class="title-search">
 					<view class="view-title" @click="goSchools">
-						<text class="text-white">河南师范大学</text>
+						<text class="text-white">{{schools.length > 7 ? schools.substring(0,7) + '...' : schools}}</text>
 						<uni-icon type="arrowdown" color="#fff" size="20" />
 					</view>
-					<view class="view-search">
+					<view class="view-search" @click="search">
 						<uni-icon style="line-height: 20px;" type="search" size="22" color="#666666" />
 						<text class="text-gray">请输入搜索关键词</text>
 					</view>
@@ -97,7 +97,7 @@
 </template>
 
 <script>
-	import uniIcon from '@/components/uni-icon.vue'
+	import uniIcon from '@/components/uni-icon/uni-icon.vue'
 	import schools from '@/pages/home/location.vue'
 	import forumFooter from "@/components/forumfooter.vue";
 
@@ -119,6 +119,7 @@
 				pageData: {},
 				isShow: false,
 				gridCol: 4, // 每行显示多少列
+				schools: uni.getStorageSync('schools'),
 				userinfo: uni.getStorageSync('userinfo'),
 				swiperList: [{
 					id: 0,
@@ -248,7 +249,7 @@
 			},
 			goForum: function(id) {
 				uni.navigateTo({
-					url: "/pageforum/forum/show?id=" + id
+					url: "/pageforum/forum/comment?id=" + id
 				})
 			},
 			goSchools() {
@@ -259,28 +260,36 @@
 			goApp(e) {
 				switch (e.currentTarget.id){
 					case '0':
-						uni.navigateToMiniProgram({
+						uni.showToast({
+						    title: '暂无小程序',
+							icon: 'none',
+						    duration: 1500
+						});
+						/* uni.navigateToMiniProgram({
 						  appId: '',
 						  path: 'pages/index/index?id=123',
 						  extraData: {
 						    'data1': 'test'
 						  },
 						  success(res) {
-						    // 打开成功
 						  }
-						})
+						}) */
 						break;
 					case '1':
-						uni.navigateToMiniProgram({
+						uni.showToast({
+						    title: '暂无小程序',
+							icon: 'none',
+						    duration: 1500
+						});
+						/* uni.navigateToMiniProgram({
 						  appId: '',
 						  path: 'pages/index/index?id=123',
 						  extraData: {
 						    'data1': 'test'
 						  },
 						  success(res) {
-						    // 打开成功
 						  }
-						})
+						}) */
 						break;
 					case '2':
 						uni.navigateTo({
@@ -311,6 +320,11 @@
 						break;
 				}
 			},
+			search() {
+				uni.navigateTo({
+					url: '/pages/home/search'
+				})
+			},
 			apex() {
 				uni.pageScrollTo({
 					duration: 0,
@@ -331,22 +345,23 @@
 
 	.title-search {
 		display: flex;
-		min-height: 85px;
+		min-height: 88px;
 	}
 
 	.view-title {
 		width: 60%;
-		height: 55px;
+		height: 63px;
+		line-height: 63px;
 		text-align: center;
 	}
 
 	.view-search {
 		width: 93%;
-		height: 55px;
-		line-height: 55px;
+		height: 63px;
+		line-height: 63px;
 		padding: 0 4%;
 		margin-right: 25px;
-		border-radius: 30px;
+		border-radius: 20px;
 		background-color: #fff;
 	}
 

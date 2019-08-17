@@ -65,7 +65,7 @@
 </template>
 
 <script>
-	import uniIcon from '@/components/uni-icon.vue'
+	import uniIcon from '@/components/uni-icon/uni-icon.vue'
 	import forumFooter from "@/components/forumfooter.vue";
 
 	var app = require("@/common/common.js");
@@ -189,7 +189,12 @@
 			goTabs(e) {
 				switch (e.currentTarget.id){
 					case '0':
-						uni.navigateToMiniProgram({
+						uni.showToast({
+						    title: '暂无小程序',
+							icon: 'none',
+						    duration: 1500
+						});
+						/* uni.navigateToMiniProgram({
 						  appId: '',
 						  path: 'pages/index/index?id=123',
 						  extraData: {
@@ -198,10 +203,15 @@
 						  success(res) {
 						    // 打开成功
 						  }
-						})
+						}) */
 						break;
 					case '1':
-						uni.navigateToMiniProgram({
+						uni.showToast({
+						    title: '暂无小程序',
+							icon: 'none',
+						    duration: 1500
+						});
+						/* uni.navigateToMiniProgram({
 						  appId: '',
 						  path: 'pages/index/index?id=123',
 						  extraData: {
@@ -210,7 +220,7 @@
 						  success(res) {
 						    // 打开成功
 						  }
-						})
+						}) */
 						break;
 					case '2':
 						uni.navigateTo({

@@ -1,5 +1,5 @@
 <template>
-	<view class="footer">
+	<view class="input-footer">
 		<!-- <view class="footer-left">
 			<view class="uni-icon uni-icon-mic" @tap="startRecognize"> </view>
 		</view> -->
@@ -64,17 +64,24 @@
 </script>
 
 <style>
-	.footer {
-		display: flex;
-		flex-direction: row;
+	.input-footer {
 		width: 100%;
-		height: 80upx;
-		min-height: 80upx;
-		border-top: solid 1px #bbb;
+		height: 120upx;
+		bottom: 0upx;
+		left: 0upx;
+		right: 0upx;
+		min-height: 120upx;
+		display: flex;
+		position: fixed;
+		z-index: 9999;
+		align-items: center;
 		overflow: hidden;
-		padding: 5upx;
+		flex-direction: row;
 		background-color: #F4F5F6;
+		border-top: solid 1px #bbb;
+		/* padding: 50px 0px 60px 0px; */
 	}
+	
 	.footer-left {
 		width: 80upx;
 		height: 80upx;
@@ -84,7 +91,8 @@
 	}
 	.footer-right {
 		width: 120upx;
-		height: 80upx;
+		height: 90upx;
+		font-size: 30px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -93,12 +101,13 @@
 	.footer-center {
 		flex: 1;
 		padding-left: 20upx;
-		height: 80upx;
+		height: 90upx;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
 	.footer-center .input-text {
+		height: 80upx;
 		flex: 1;
 		background: #fff;
 		/* border: solid 1upx #ddd; */
@@ -110,12 +119,11 @@
 	.footer-right .send-comment{
 		background-color: #007AFF;
 		text-align: center;
-		line-height: 60upx;
+		line-height: 70upx;
 		color: #FFFFFF;
-		width: 80upx;
-		height: 60upx;
+		width: 90upx;
+		height: 70upx;
 		border-radius: 5px;
-		font-size: 10px;
-		/* height: 60upx; */
+		font-size: 30px;
 	}
 </style>

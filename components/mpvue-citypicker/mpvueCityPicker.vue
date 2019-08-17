@@ -149,7 +149,7 @@
 	};
 </script>
 
-<style>
+<style scoped>
 	.pickerMask {
 		position: fixed;
 		z-index: 1000;
@@ -176,7 +176,7 @@
 
 	.mpvue-picker__hd {
 		display: flex;
-		padding: 9px 15px;
+		padding: 18px 25px 18px 25px;
 		background-color: #fff;
 		position: relative;
 		text-align: center;
@@ -197,6 +197,7 @@
 	}
 
 	.mpvue-picker__action {
+		font-size: 35px;
 		display: block;
 		flex: 1;
 		color: #1aad19;
@@ -212,11 +213,12 @@
 	}
 
 	.picker-item {
+		height: 40px;
+		line-height: 90px;
 		text-align: center;
-		line-height: 40px;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		font-size: 16px;
+		font-size: 30px;
 	}
 
 	.mpvue-picker-view {
@@ -224,7 +226,7 @@
 		bottom: 0;
 		left: 0;
 		width: 100%;
-		height: 238px;
+		height: 520px;
 		background-color: rgba(255, 255, 255, 1);
 	}
 </style>

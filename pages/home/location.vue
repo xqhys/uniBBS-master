@@ -39,11 +39,8 @@
 		</view>
 
 		<view class="view-school text-orange">
-			<view class="name-schools solid-bottom" @click="goIndex">
-				河南师范大学
-			</view>
-			<view class="name-schools solid-bottom">
-				湖北师范大学
+			<view v-for="(item,index) in schools" :key="index" :id="index" class="name-schools solid-bottom" @click="goIndex">
+				{{item.name}}
 			</view>
 		</view>
 
@@ -64,9 +61,10 @@
 <script>
 	import mpvueCityPicker from '@/components/mpvue-citypicker/mpvueCityPicker.vue'
 	import cityData from '@/common/city.data.js';
-	import uniIcon from '@/components/uni-icon.vue'
+	import uniIcon from '@/components/uni-icon/uni-icon.vue'
 	var util = require('@/common/util.js');
 	var formatLocation = util.formatLocation;
+
 	export default {
 		components: {
 			mpvueCityPicker,
@@ -79,7 +77,17 @@
 				cityPickerValueDefault: [0, 0, 1],
 				themeColor: '#007AFF',
 				pickerText: '北京市-市辖区-东城区',
-				address: ''
+				address: '',
+				schools: [
+					{
+						name: '河南师范大学',
+						index: 0
+					},
+					{
+						name: '湖北师范大学',
+						index: 1
+					}
+				]
 			};
 		},
 		onLoad() {
@@ -88,8 +96,9 @@
 			this.isShow = true;
 		},
 		methods: {
-			goIndex() {
+			goIndex(e) {
 				this.isShow = false;
+				uni.setStorageSync('schools', this.schools[e.currentTarget.id].name);
 				uni.reLaunch({
 					url: "/pages/home/index?flag=true"
 				})
@@ -149,6 +158,7 @@
 		padding: 15px 0px 10px 15px;
 		box-shadow: gray 0px 5px 10px 0px; //边框内阴影
 	}
+
 	.input-view {
 		width: 77%;
 		display: flex;
@@ -160,33 +170,40 @@
 		flex-wrap: nowrap;
 		margin: 7px 0;
 	}
+
 	.input-view .uni-icon {
 		line-height: 70px !important;
 	}
+
 	.input-view .input {
 		height: 70px;
 		line-height: 70px;
 		width: 94%;
 		padding: 0 3%;
 	}
+
 	.search-form {
 		padding-left: 45px;
 		font-size: 40px;
 		color: #00BCD4;
 		font-weight: bold;
 	}
+
 	.title-sc {
 		margin-top: 20px;
 		padding: 10px 0px 25px 15px;
 		/* background-color: #F7F7F7; */
 	}
+
 	.view-school {
 		background-color: #fff;
 		box-shadow: gray 0px 5px 10px 0px; //边框内阴影
 	}
+
 	.name-schools {
 		padding: 15px 0px 15px 25px;
 	}
+
 	.advert {
 		text-align: center;
 		padding-top: 40px;

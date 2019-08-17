@@ -15,6 +15,12 @@
 			}
 		},
 		{
+			"path": "pages/home/search",
+			"style": {
+				"navigationBarTitleText": "校园问问内容搜索"
+			}
+		},
+		{
 			"path": "pages/user/index",
 			"style": {
 				"navigationBarTitleText": "个人中心"
@@ -70,7 +76,7 @@
 					}
 				},
 				{
-					"path": "forum/show",
+					"path": "forum/comment",
 					"style": {
 						"navigationBarTitleText": "帖子详情",
 						"onReachBottomDistance": 60,

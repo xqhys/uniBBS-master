@@ -15,8 +15,8 @@
 		</view>
 		
 		<view style="height: 100%;" class="cu-list grid no-border" :class="['col-' + gridCol]">
-			<view class="cu-item" v-for="(item,index) in ColorList" :key="index" v-if="index < 9">
-				<view @click="publishPosts" class='icon-tabs my-tag' :class="'bg-' + item.name">{{item.theme}}</view>
+			<view class="cu-item" v-for="(item,index) in columns" :key="index" :id="index" @click="publishPosts" v-if="index < 9">
+				<view class='icon-tabs my-tag' :class="'bg-' + item.name">{{item.theme}}</view>
 			</view>
 		</view>
 	</view>
@@ -32,7 +32,7 @@
 					type: 'image',
 					url: '../../static/swiper/5-1.jpg'
 				}],
-				ColorList: [{
+				columns: [{
 					theme: '校园',
 					title: '嫣红',
 					name: 'red',
@@ -126,9 +126,9 @@
 			};
 		},
 		methods: {
-			publishPosts() {
+			publishPosts(e) {
 				uni.navigateTo({
-					url: "/pageforum/forum/add",
+					url: "/pageforum/forum/add?theme=" + this.columns[e.currentTarget.id].theme
 				})
 			}
 		}

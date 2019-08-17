@@ -1,10 +1,10 @@
 <template>
-	<view>
+	<view v-if="pageLoad">
 		<view class="cu-card dynamic" :class="isCard?'no-card':''">
 			<view class="cu-item shadow">
-				<view class="solid-bottom text-xl padding">
+				<!-- <view class="solid-bottom text-xl padding">
 					<text class="text-black text-bold">{{pageData.data.title}}</text>
-				</view>
+				</view> -->
 				
 				<view class="cu-list menu-avatar">
 					<view class="cu-item">
@@ -40,7 +40,7 @@
 					</view>
 				</view>
 				
-				<view class="cu-list menu-avatar comment solids-top">
+				<!-- <view class="cu-list menu-avatar comment solids-top">
 					<view class="cu-item">
 						<view class="cu-avatar round" style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Morgana.png);"></view>
 						<view class="content">
@@ -86,6 +86,15 @@
 							</view>
 						</view>
 					</view>
+				</view> -->
+				
+				<view class="comment-view">
+					<view>
+						<uni-icon type="compose" size="50" color="#666666" />
+					</view>
+					<view>
+						暂无评论喔
+					</view>
 				</view>
 			</view>
 		</view>
@@ -97,9 +106,10 @@
 </template>
 
 <script>
-	import dUserbox from "../../components/d-userbox.vue";
-	import cmform from "../../components/cmform.vue";
-	import chatInput from '../../components/chatinput.vue';
+	import dUserbox from "@/components/d-userbox.vue";
+	import cmform from "@/components/cmform.vue";
+	import chatInput from '@/components/chatinput.vue';
+	import uniIcon from '@/components/uni-icon/uni-icon.vue'
 	
 	var app = require("../../common/common.js");
 	var id;
@@ -107,33 +117,30 @@
 		components: {
 			dUserbox,
 			chatInput,
+			uniIcon,
 			cmform
 		},
 		data: function() {
 			return {
 				isCard: true,
-				showInput: false,
 				input_placeholder: '评论', //占位内容
 				focus: false, //是否自动聚焦输入框
 				is_reply: false, //回复还是评论
 				showInput: false, //评论输入框
 				pageLoad: false,
-				pageHide: false,
 				pageData: {},
 			}
+
+		},
+		onReady() {
 
 		},
 		onLoad: function(option) {
 			id = option.id;
 			this.getPage();
-			this.addClick();
-
-		},
-		onShareAppMessage: function() {
-
 		},
 		onPullDownRefresh: function() {
-			this.refresh();
+			
 		},
 		methods: {
 			IsCard(e) {
@@ -152,18 +159,6 @@
 				console.log(message.content);
 				this.init_input();
 			},
-			refresh: function() {
-				this.getPage();
-				setTimeout(function() {
-					uni.stopPullDownRefresh();
-				}, 1000)
-			},
-			addClick: function() {
-				uni.request({
-					url: app.apiHost + "/module.php?fromapp=wxapp&m=forum&ajax=1&a=addclick&id=" + id,
-					success: function(res) {}
-				})
-			},
 			getPage: function() {
 				var that = this;
 				uni.request({
@@ -181,63 +176,20 @@
 
 					}
 				})
-			},
-			favToggle: function(id) {
-				var that = this;
-				uni.request({
-					url: that.app.apiHost + "?fromapp=wxapp&m=fav&a=toggle&ajax=1",
-					data: {
-						objectid: id,
-						authcode: that.app.getAuthCode(),
-						tablename: "mod_forum"
-					},
-					success: function(res) {
-						if (res.data.error == 1000) {
-							that.app.goLogin();
-							return false;
-						}
-						if (res.data.data == 'delete') {
-							that.pageData.isfav = false;
-						} else {
-							that.pageData.isfav = true;
-						}
-
-					}
-				})
-			},
-			loveToggle: function(id) {
-				var that = this;
-				uni.request({
-					url: that.app.apiHost + "?m=love&a=toggle&ajax=1",
-					data: {
-
-						fromapp: that.app.fromapp(),
-						objectid: id,
-						authcode: that.app.getAuthCode(),
-						tablename: "mod_forum"
-					},
-					success: function(res) {
-						if (res.data.error == 1000) {
-							that.app.goLogin();
-							return false;
-						}
-						if (res.data.data == 'delete') {
-							that.pageData.islove = false;
-						} else {
-							that.pageData.islove = true;
-						}
-
-					}
-				})
 			}
 
-		},
+		}
 	}
 </script>
 
 <style>
 	.d-content{
 		width: 100%;
+		text-align: center;
+	}
+	
+	.comment-view {
+		height: 500px;
 		text-align: center;
 	}
 </style>

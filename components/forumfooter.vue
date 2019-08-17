@@ -161,7 +161,7 @@
 		color: #fff;
 		right: 30px;
 		bottom: 130px;
-		z-index: 9999;
+		z-index: 1000;
 		margin-top: 0px !important;
 		position: fixed !important;
 	}

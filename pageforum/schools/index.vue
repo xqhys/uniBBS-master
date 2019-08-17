@@ -60,7 +60,7 @@
 </template>
 
 <script>
-	import uniIcon from '@/components/uni-icon.vue'
+	import uniIcon from '@/components/uni-icon/uni-icon.vue'
 	import forumFooter from "@/components/forumfooter.vue";
 	
 	var app = require("@/common/common.js");
