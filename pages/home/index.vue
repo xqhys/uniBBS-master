@@ -55,7 +55,7 @@
 						{{item.title}}
 					</view>
 					<view class="grid flex-sub padding-lr" :class="item.imgslist && item.imgslist.length>1?'col-3 grid-square':'col-1'">
-						<view class="bg-img" :class="item.imgslist && item.imgslist.length>1?'':'only-img'" :style="[{'background-image':'url(' + img + '.100x100.jpg)'}]"
+						<view @click="showImage(item.imgslist, imgIndex)" class="bg-img" :class="item.imgslist && item.imgslist.length>1?'':'only-img'" :style="[{'background-image':'url(' + img + '.100x100.jpg)'}]"
 						 v-for="(img,imgIndex) in item.imgslist" :key="imgIndex">
 						</view>
 					</view>
@@ -160,7 +160,7 @@
 		},
 		onReady: function() {
 			if (this.userinfo) {
-				this.isShow = !this.userinfo.isLogin;
+				this.isShow = this.userinfo.isLogin;
 			} else {
 				let userinfo = {
 					address: '定位中...',
@@ -251,6 +251,12 @@
 				uni.navigateTo({
 					url: "/pageforum/forum/comment?id=" + id
 				})
+			},
+			showImage(imgslist, imgIndex) {
+				uni.previewImage({
+					current: imgslist[imgIndex],
+					urls: imgslist
+				});
 			},
 			goSchools() {
 				uni.navigateTo({

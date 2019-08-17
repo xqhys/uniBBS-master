@@ -38,7 +38,7 @@
 					{{item.title}}
 				</view>
 				<view class="grid flex-sub padding-lr" :class="item.imgslist && item.imgslist.length>1?'col-3 grid-square':'col-1'">
-					<view class="bg-img" :class="item.imgslist && item.imgslist.length>1?'':'only-img'" :style="[{'background-image':'url(' + img + '.100x100.jpg)'}]"
+					<view @click="showImage(item.imgslist, imgIndex)" class="bg-img" :class="item.imgslist && item.imgslist.length>1?'':'only-img'" :style="[{'background-image':'url(' + img + '.100x100.jpg)'}]"
 					 v-for="(img,imgIndex) in item.imgslist" :key="imgIndex">
 					</view>
 				</view>
@@ -211,8 +211,14 @@
 			},
 			goForum: function(id) {
 				uni.navigateTo({
-					url: "../forum/show?id=" + id
+					url: "/pageforum/forum/comment?id=" + id
 				})
+			},
+			showImage(imgslist, imgIndex) {
+				uni.previewImage({
+					current: imgslist[imgIndex],
+					urls: imgslist
+				});
 			},
 			tabSelect(e) {
 				this.TabCur = e.currentTarget.dataset.id;

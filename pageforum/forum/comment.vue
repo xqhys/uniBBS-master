@@ -23,7 +23,7 @@
 				</view>
 
 				<view class="d-content">
-					<image mode="widthFix" v-for="(item,key) in pageData.imgslist" :key="key" :src="item"></image> 
+					<image  @click="showImage(key)" v-for="(item,key) in pageData.imgslist" :key="key" :src="item" mode="widthFix"></image> 
 				</view>
 				
 				<view class="text-gray text-sm text-right padding">
@@ -139,9 +139,6 @@
 			id = option.id;
 			this.getPage();
 		},
-		onPullDownRefresh: function() {
-			
-		},
 		methods: {
 			IsCard(e) {
 				this.isCard = e.detail.value
@@ -159,21 +156,23 @@
 				console.log(message.content);
 				this.init_input();
 			},
+			showImage: function(imgIndex) {
+				uni.previewImage({
+					current: this.pageData.imgslist[imgIndex],
+					urls:this.pageData.imgslist
+				});
+			},
 			getPage: function() {
-				var that = this;
+				var self = this;
 				uni.request({
 					url: app.apiHost + "/module.php?fromapp=wxapp&m=forum&ajax=1&a=show&id=" + id,
 					data: {
 						authcode: this.app.getAuthCode()
 					},
 					success: function(res) {
-
-						that.pageLoad = true;
-						//res.data.data.data.content+='<style>img{max-width:100%;width:220px;height:auto;}</style>';
+						self.pageLoad = true;
 						res.data.data.data.content = app.html(res.data.data.data.content);
-						console.log(res.data.data.data.content);
-						that.pageData = res.data.data;
-
+						self.pageData = res.data.data;
 					}
 				})
 			}
