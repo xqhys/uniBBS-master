@@ -8,7 +8,7 @@
 				
 				<view class="cu-list menu-avatar">
 					<view class="cu-item">
-						<view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+						<view class="cu-avatar round lg" :style="[{'background-image':'url(' + pageData.author.user_head + ')'}]"></view>
 						<view class="content flex-sub">
 							<view>{{pageData.author.nickname}}</view>
 							<view class="text-gray text-sm flex justify-between">
@@ -173,6 +173,7 @@
 						self.pageLoad = true;
 						res.data.data.data.content = app.html(res.data.data.data.content);
 						self.pageData = res.data.data;
+						console.log(self.pageData.author.user_head)
 					}
 				})
 			}

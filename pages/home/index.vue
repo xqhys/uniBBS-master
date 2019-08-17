@@ -160,7 +160,7 @@
 		},
 		onReady: function() {
 			if (this.userinfo) {
-				this.isShow = this.userinfo.isLogin;
+				this.isShow = !this.userinfo.isLogin;
 			} else {
 				let userinfo = {
 					address: '定位中...',
